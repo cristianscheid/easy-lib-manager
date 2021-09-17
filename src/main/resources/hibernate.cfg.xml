@@ -50,7 +50,7 @@ Contributor(s):
         
         <mapping class="apresentacao.ClientesTableModel"/>
         <mapping class="apresentacao.LivrosTableModel"/>
-        <mapping class="easylib.Main"/>
+        <mapping class="easylibmanager.Main"/>
         <mapping class="negocio.Autor"/>
         <mapping class="negocio.Categoria"/>
         <mapping class="negocio.Cliente"/>
@@ -59,5 +59,6 @@ Contributor(s):
         <mapping class="negocio.Emprestimo"/>
         <mapping class="negocio.Livro"/>
         <mapping class="negocio.Usuario"/>
+        <mapping class="persistencia.AutorDao"/>
     </session-factory>
 </hibernate-configuration>

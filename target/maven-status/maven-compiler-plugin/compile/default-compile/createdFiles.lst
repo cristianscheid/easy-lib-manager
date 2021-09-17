@@ -1,3 +1,4 @@
+easylibmanager/Main.class
 negocio/Usuario_.class
 negocio/Autor_.class
 negocio/Autor.class
@@ -6,14 +7,15 @@ negocio/Usuario.class
 negocio/Editora.class
 negocio/Definicoes.class
 negocio/Livro_.class
-easylib/Main.class
 negocio/Emprestimo_.class
 apresentacao/LivrosTableModel.class
 negocio/Editora_.class
 negocio/Categoria_.class
+easylibmanager/HibernateUtil.class
 negocio/Cliente.class
 apresentacao/ClientesTableModel.class
 negocio/Livro.class
+persistencia/AutorDao.class
+easylibmanager/Testes.class
 negocio/Emprestimo.class
 negocio/Categoria.class
-easylib/HibernateUtil.class
