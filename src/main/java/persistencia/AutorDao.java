@@ -73,7 +73,7 @@ public class AutorDao {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + autor.getId());
+            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + id);
             resultado = query.list();
             for (Object obj : resultado) {
                 autor = (Autor) obj;
@@ -85,7 +85,6 @@ public class AutorDao {
     }
 
     public ArrayList<Autor> readAll() {
-
         List resultado = null;
         Session sessao = null;
         ArrayList<Autor> autores = new ArrayList<>();
@@ -93,7 +92,7 @@ public class AutorDao {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + autor.getId());
+            org.hibernate.Query query = sessao.createQuery("select * from autor");
             resultado = query.list();
             for (Object obj : resultado) {
                 autor = (Autor) obj;
