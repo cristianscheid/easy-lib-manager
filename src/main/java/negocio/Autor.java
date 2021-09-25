@@ -29,6 +29,9 @@ public class Autor implements Serializable {
         this.nomeCompleto = nomeCompleto;
     }
 
+    public Autor() {
+    }
+
     public int getId() {
         return id;
     }

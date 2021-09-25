@@ -27,13 +27,11 @@ public class EditoraDao {
     }
 
     public void update(Editora editora) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from editora where id = " + editora.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Editora where id = " + editora.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Editora editora_bd = (Editora) obj;
                 editora_bd.setId(editora.getId());
@@ -48,13 +46,11 @@ public class EditoraDao {
     }
 
     public void delete(Editora editora) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from editora where id = " + editora.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Editora where id = " + editora.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Editora editora_bd = (Editora) obj;
                 sessao.delete(editora_bd);
@@ -67,14 +63,11 @@ public class EditoraDao {
     }
 
     public Editora read(int id) {
-        List resultado = null;
-        Session sessao = null;
         Editora editora = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from editora where id = " + editora.getId());
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Editora where id = " + editora.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 editora = (Editora) obj;
             }
@@ -85,14 +78,11 @@ public class EditoraDao {
     }
 
     public Editora readName(String nome) {
-        List resultado = null;
-        Session sessao = null;
         Editora editora = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from editora nome = '" + nome + "'");
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Editora nome = '" + nome + "'");
+            List resultado = query.list();
             for (Object obj : resultado) {
                 editora = (Editora) obj;
             }
@@ -103,17 +93,14 @@ public class EditoraDao {
     }
 
     public ArrayList<Editora> readAll() {
-        List resultado = null;
-        Session sessao = null;
         ArrayList<Editora> editoras = new ArrayList<>();
-        Editora editora = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from editora");
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Editora");
+            List resultado = query.list();
             for (Object obj : resultado) {
-                editora = (Editora) obj;
+                Editora editora = (Editora) obj;
                 editoras.add(editora);
             }
         } catch (HibernateException hibEx) {

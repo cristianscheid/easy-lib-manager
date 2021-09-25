@@ -50,7 +50,21 @@ Contributor(s):
         
         <mapping class="apresentacao.ClientesTableModel"/>
         <mapping class="apresentacao.LivrosTableModel"/>
+        <mapping class="apresentacao.TelaCadastroClientes"/>
+        <mapping class="apresentacao.TelaCadastroLivros"/>
+        <mapping class="apresentacao.TelaCadastroUsuarios"/>
+        <mapping class="apresentacao.TelaConsultaClientes"/>
+        <mapping class="apresentacao.TelaConsultaLivro"/>
+        <mapping class="apresentacao.TelaDefinicoes"/>
+        <mapping class="apresentacao.TelaDevolucao"/>
+        <mapping class="apresentacao.TelaEmprestimo"/>
+        <mapping class="apresentacao.TelaLogin"/>
+        <mapping class="apresentacao.TelaMenuPrincipal"/>
+        <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
+        <mapping class="apresentacao.TelaRelatorioLivros"/>
+        
         <mapping class="easylibmanager.Main"/>
+        
         <mapping class="negocio.Autor"/>
         <mapping class="negocio.Categoria"/>
         <mapping class="negocio.Cliente"/>
@@ -59,6 +73,15 @@ Contributor(s):
         <mapping class="negocio.Emprestimo"/>
         <mapping class="negocio.Livro"/>
         <mapping class="negocio.Usuario"/>
+        
         <mapping class="persistencia.AutorDao"/>
+        <mapping class="persistencia.CategoriaDao"/>
+        <mapping class="persistencia.ClienteDao"/>
+        <mapping class="persistencia.DefinicoesDao"/>
+        <mapping class="persistencia.EditoraDao"/>
+        <mapping class="persistencia.EmprestimoDao"/>
+        <mapping class="persistencia.LivroDao"/>
+        <mapping class="persistencia.Md5"/>
+        <mapping class="persistencia.UsuarioDao"/>
     </session-factory>
 </hibernate-configuration>

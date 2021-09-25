@@ -49,6 +49,9 @@ public class Usuario implements Serializable {
         this.cpf = cpf;
     }
 
+    public Usuario() {
+    }
+
     public int getId() {
         return id;
     }

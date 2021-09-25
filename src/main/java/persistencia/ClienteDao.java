@@ -28,13 +28,11 @@ public class ClienteDao {
     }
 
     public void update(Cliente cliente) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from cliente where id = " + cliente.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Cliente where id = " + cliente.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Cliente cliente_bd = (Cliente) obj;
                 cliente_bd.setId(cliente.getId());
@@ -54,13 +52,11 @@ public class ClienteDao {
     }
 
     public void delete(Cliente cliente) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from cliente where id = " + cliente.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Cliente where id = " + cliente.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Autor autor_bd = (Autor) obj;
                 sessao.delete(autor_bd);
@@ -73,14 +69,11 @@ public class ClienteDao {
     }
 
     public Cliente read(int id) {
-        List resultado = null;
-        Session sessao = null;
         Cliente cliente = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from cliente where id = " + cliente.getId());
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Cliente where id = " + cliente.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 cliente = (Cliente) obj;
             }
@@ -91,15 +84,49 @@ public class ClienteDao {
     }
 
     public ArrayList<Cliente> readAll() {
-        List resultado = null;
-        Session sessao = null;
         ArrayList<Cliente> clientes = new ArrayList<>();
-        Cliente cliente = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from cliente where id = " + cliente.getId());
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Cliente");
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                Cliente cliente = (Cliente) obj;
+                clientes.add(cliente);
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return clientes;
+    }
+
+    public ArrayList<Cliente> readFilter(Cliente cliente) {
+        String sql = "from Cliente where 1=1";
+        if (cliente.getId() != 0) {
+            sql += " and id = " + cliente.getId() + "";
+        }
+        if (cliente.getNome() != null) {
+            sql += " and lower(nome) like lower('%" + cliente.getNome() + "%')";
+        }
+        if (cliente.getSobrenome() != null) {
+            sql += " and lower(sobrenome) like lower('%" + cliente.getSobrenome() + "%')";
+        }
+        if (cliente.getEmail() != null) {
+            sql += " and lower(email) like lower('%" + cliente.getEmail() + "%')";
+        }
+        if (cliente.getCpf() != null) {
+            sql += " and cpf like '%" + cliente.getCpf() + "%'";
+        }
+        if (cliente.getTelefone() != null) {
+            sql += " and telefone like '%" + cliente.getTelefone() + "%'";
+        }
+        if (cliente.getCelular() != null) {
+            sql += " and celular like '%" + cliente.getCelular() + "%'";
+        }
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery(sql);
+            List resultado = query.list();
             for (Object obj : resultado) {
                 cliente = (Cliente) obj;
                 clientes.add(cliente);
@@ -110,6 +137,21 @@ public class ClienteDao {
         return clientes;
     }
 
+    public Cliente readCpf(String cpf) {
+        Cliente cliente = null;
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Cliente where cpf = " + cpf);
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                cliente = (Cliente) obj;
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return cliente;
+    }
+}
 //    public ArrayList read(Filter filter) throws DataBaseException
 //    {
 //        ArrayList<Cliente> clientesFiltrados = new ArrayList();
@@ -128,92 +170,3 @@ public class ClienteDao {
 //    {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-//
-//    public ArrayList<Cliente> readFilter(Cliente cliente) throws DataBaseException
-//    {
-//        String sql = "SELECT * FROM cliente WHERE 1=1";
-//        if (cliente.getId() != 0)
-//        {
-//            sql += " AND id = " + cliente.getId() + "";
-//        }
-//        if (cliente.getNome() != null)
-//        {
-//            sql += " AND nome ILIKE '%" + cliente.getNome() + "%'";
-//        }
-//        if (cliente.getSobrenome() != null)
-//        {
-//            sql += " AND sobrenome ILIKE '%" + cliente.getSobrenome() + "%'";
-//        }
-//        if (cliente.getEmail() != null)
-//        {
-//            sql += " AND email ILIKE '%" + cliente.getEmail() + "%'";
-//        }
-//        if (cliente.getCpf() != null)
-//        {
-//            sql += " AND cpf LIKE '%" + cliente.getCpf() + "%'";
-//        }
-//        if (cliente.getTelefone() != null)
-//        {
-//            sql += " AND telefone LIKE '%" + cliente.getTelefone() + "%'";
-//        }
-//        if (cliente.getCelular() != null)
-//        {
-//            sql += " AND celular LIKE '%" + cliente.getCelular() + "%'";
-//        }
-//
-//        ArrayList<Cliente> clientes = new ArrayList<>();
-//        Cliente aux = null;
-//        try
-//        {
-//            ResultSet rs = connection.runQuerySQL(sql);
-//            if (rs.isBeforeFirst())
-//            {
-//                while (rs.next())
-//                {
-//                    int id = rs.getInt("id");
-//                    String nome = rs.getString("nome");
-//                    String sobrenome = rs.getString("sobrenome");
-//                    String cpf = rs.getString("cpf");
-//                    String email = rs.getString("email");
-//                    String telefone = rs.getString("telefone");
-//                    String celular = rs.getString("celular");
-//                    aux = new Cliente(id, nome, sobrenome, cpf, email, telefone, celular);
-//                    clientes.add(aux);
-//                }
-//            }
-//        } catch (SQLException ex)
-//        {
-//            throw new DataBaseException(ex.getMessage());
-//        }
-//        return clientes;
-//    }
-//
-//    public Cliente readCpf(String cpf) throws DataBaseException
-//    {
-//        String sql = "SELECT * FROM cliente WHERE cpf = '" + cpf + "'";
-//        Cliente cliente = null;
-//        try
-//        {
-//            ResultSet rs = connection.runQuerySQL(sql);
-//
-//            if (rs.isBeforeFirst())
-//            {
-//                while (rs.next())
-//                {
-//                    int id = rs.getInt("id");
-//                    String nome = rs.getString("nome");
-//                    String sobrenome = rs.getString("sobrenome");
-//                    String email = rs.getString("email");
-//                    String telefone = rs.getString("telefone");
-//                    String celular = rs.getString("celular");
-//                    cliente = new Cliente(id, nome, sobrenome, cpf, email, telefone, celular);
-//                }
-//            }
-//        } catch (SQLException ex)
-//        {
-//            throw new DataBaseException(ex.getMessage());
-//        }
-//        return cliente;
-//
-//    }
-}

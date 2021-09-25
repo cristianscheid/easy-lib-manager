@@ -27,13 +27,11 @@ public class AutorDao {
     }
 
     public void update(Autor autor) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + autor.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Autor where id = " + autor.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Autor autor_bd = (Autor) obj;
                 autor_bd.setId(autor.getId());
@@ -48,13 +46,11 @@ public class AutorDao {
     }
 
     public void delete(Autor autor) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + autor.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Autor where id = " + autor.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Autor autor_bd = (Autor) obj;
                 sessao.delete(autor_bd);
@@ -67,14 +63,11 @@ public class AutorDao {
     }
 
     public Autor read(int id) {
-        List resultado = null;
-        Session sessao = null;
         Autor autor = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor where id = " + id);
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Autor where id = " + id);
+            List resultado = query.list();
             for (Object obj : resultado) {
                 autor = (Autor) obj;
             }
@@ -85,17 +78,13 @@ public class AutorDao {
     }
 
     public ArrayList<Autor> readAll() {
-        List resultado = null;
-        Session sessao = null;
         ArrayList<Autor> autores = new ArrayList<>();
-        Autor autor = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from autor");
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Autor");
+            List resultado = query.list();
             for (Object obj : resultado) {
-                autor = (Autor) obj;
+                Autor autor = (Autor) obj;
                 autores.add(autor);
             }
         } catch (HibernateException hibEx) {
@@ -104,7 +93,20 @@ public class AutorDao {
         return autores;
     }
 
-//        public Autor readName(String nomeCompleto) throws DataBaseException {
+    public Autor readName(String nomeCompleto) {
+        Autor autor = null;
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Autor where nome_completo = " + nomeCompleto);
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                autor = (Autor) obj;
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return autor;
+    }
 //        String sql = "SELECT * FROM autor WHERE nome_completo = '" + nomeCompleto + "'";
 //        Autor autor = null;
 //        try {
@@ -121,11 +123,29 @@ public class AutorDao {
 //        }
 //        return autor;
 //    }
-//    public ArrayList<Autor> readFilter(Autor autor) throws DataBaseException {
-//        String sql = "SELECT * FROM autor WHERE 1=1";
-//        if (autor.getNomeCompleto() != null) {
-//            sql += " AND nome_completo ILIKE '%" + autor.getNomeCompleto() + "%'";
-//        }
+
+    public ArrayList<Autor> readFilter(Autor autor) {
+        String sql = "from autor where 1=1";
+        if (autor.getNomeCompleto() != null) {
+            sql += " and lower(nome_completo) like lower('%" + autor.getNomeCompleto() + "%')";
+        }
+
+        ArrayList<Autor> autores = new ArrayList<>();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery(sql);
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                autor = (Autor) obj;
+                autores.add(autor);
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return autores;
+    }
+}
+
 //        ArrayList<Autor> autores = new ArrayList<>();
 //        Autor aux = null;
 //        try {
@@ -143,4 +163,3 @@ public class AutorDao {
 //        }
 //        return autores;
 //    }
-}

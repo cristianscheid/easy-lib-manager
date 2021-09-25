@@ -32,9 +32,6 @@ public class Livro {
     @OneToOne
     Categoria categoria;
 
-    public Livro() {
-    }
-
     public Livro(int id, String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria) {
         this.id = id;
         this.isbn = isbn;
@@ -54,6 +51,9 @@ public class Livro {
         this.autor = autor;
         this.editora = editora;
         this.categoria = categoria;
+    }
+
+    public Livro() {
     }
 
     public int getId() {

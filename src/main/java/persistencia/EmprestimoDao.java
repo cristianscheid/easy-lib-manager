@@ -28,13 +28,11 @@ public class EmprestimoDao {
     }
 
     public void update(Emprestimo emprestimo) {
-        List resultado = null;
-        Session sessao = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from emprestimo where id = " + emprestimo.getId());
-            resultado = query.list();
+            org.hibernate.Query query = sessao.createQuery("from Emprestimo where id = " + emprestimo.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 Emprestimo emprestimo_bd = (Emprestimo) obj;
                 emprestimo_bd.setId(emprestimo.getId());
@@ -52,17 +50,13 @@ public class EmprestimoDao {
     }
 
     public ArrayList<Emprestimo> readAll() {
-        List resultado = null;
-        Session sessao = null;
         ArrayList<Emprestimo> emprestimos = new ArrayList<>();
-        Emprestimo emprestimo = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("select * from emprestimo");
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Emprestimo");
+            List resultado = query.list();
             for (Object obj : resultado) {
-                emprestimo = (Emprestimo) obj;
+                Emprestimo emprestimo = (Emprestimo) obj;
                 emprestimos.add(emprestimo);
             }
         } catch (HibernateException hibEx) {
@@ -72,14 +66,11 @@ public class EmprestimoDao {
     }
 
     public Emprestimo readLivroEmprestado(Livro livro) {
-        List resultado = null;
-        Session sessao = null;
         Emprestimo emprestimo = null;
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
-            org.hibernate.Query query = sessao.createQuery("SELECT * FROM emprestimo WHERE data_devolucao IS NULL AND livro_id = " + livro.getId());
-            resultado = query.list();
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Emprestimo where data_devolucao is null and livro_id = " + livro.getId());
+            List resultado = query.list();
             for (Object obj : resultado) {
                 emprestimo = (Emprestimo) obj;
             }

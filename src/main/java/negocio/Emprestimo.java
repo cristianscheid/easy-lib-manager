@@ -42,6 +42,9 @@ public class Emprestimo implements Serializable {
         this.cliente = cliente;
         this.livro = livro;
     }
+    
+    public Emprestimo() {
+    }
 
     public int getId() {
         return id;
