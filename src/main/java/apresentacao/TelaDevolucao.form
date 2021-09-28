@@ -163,9 +163,9 @@
                                   <Component id="jTextFieldTitulo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldAutor" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldIsbn" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <Component id="jMyNumberFieldCodigo" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jTextFieldIsbn" pref="150" max="32767" attributes="0"/>
+                                          <Component id="jMyNumberFieldCodigo" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -307,6 +307,9 @@
               </Properties>
             </Component>
             <Component class="components.JMyNumberField" name="jMyNumberFieldCodigo">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jMyNumberFieldCodigoFocusLost"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

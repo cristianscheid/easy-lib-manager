@@ -113,6 +113,12 @@ public class TelaDevolucao extends javax.swing.JFrame {
 
         jTextFieldCategoria.setEditable(false);
 
+        jMyNumberFieldCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jMyNumberFieldCodigoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -134,9 +140,9 @@ public class TelaDevolucao extends javax.swing.JFrame {
                             .addComponent(jTextFieldTitulo)
                             .addComponent(jTextFieldAutor)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
@@ -372,8 +378,8 @@ public class TelaDevolucao extends javax.swing.JFrame {
         if (jMyNumberFieldCodigo.getText().isEmpty()) {
             limparCampos();
         } else {
-            Definicoes definicoes = null;
-            Livro livro = null;
+            Definicoes definicoes;
+            Livro livro;
             Emprestimo emprestimo = null;
             DefinicoesDao definicoesDao = new DefinicoesDao();
             definicoes = definicoesDao.read();
@@ -400,7 +406,7 @@ public class TelaDevolucao extends javax.swing.JFrame {
                 jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
                 jTextFieldNomeCompleto.setText(emprestimo.getCliente().getNome() + " " + emprestimo.getCliente().getSobrenome());
 //          Dados do empréstimo
-                jTextFieldDataEmprestimo.setText(emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
+                jTextFieldDataEmprestimo.setText(emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                 int diasEmprestado = Period.between(emprestimo.getDataEmprestimo(), LocalDate.now()).getDays();
                 jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
                 int diasAtraso = 0;
@@ -435,8 +441,8 @@ public class TelaDevolucao extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonRegistrarActionPerformed
     {//GEN-HEADEREND:event_jButtonRegistrarActionPerformed
-        Livro livro = null;
-        Emprestimo emprestimo = null;
+        Livro livro;
+        Emprestimo emprestimo;
         LivroDao livroDao = new LivroDao();
         livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
         livro.setDisponivel(true);

@@ -85,6 +85,12 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
         jTextFieldCategoria.setEditable(false);
 
+        jMyNumberFieldCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jMyNumberFieldCodigoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -105,9 +111,9 @@ public class TelaEmprestimo extends javax.swing.JFrame {
                             .addComponent(jTextFieldTitulo)
                             .addComponent(jTextFieldAutor)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
@@ -293,8 +299,8 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonRegistrarActionPerformed
     {//GEN-HEADEREND:event_jButtonRegistrarActionPerformed
         LocalDate dataEmprestimo = LocalDate.now();
-        Cliente cliente = null;
-        Livro livro = null;
+        Cliente cliente;
+        Livro livro;
 
         if (jFormattedTextFieldCpf.getText().contains(" ") || jMyNumberFieldCodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
@@ -368,6 +374,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
             Cliente cliente = clienteDao.readCpf(jFormattedTextFieldCpf.getText());
             jTextFieldNome.setText(cliente.getNome() + " " + cliente.getSobrenome());
         } else {
+            JOptionPane.showMessageDialog(null, "CPF não encontrado na base de dados!");
             jTextFieldNome.setText("");
         }
     }//GEN-LAST:event_jFormattedTextFieldCpfFocusLost

@@ -141,7 +141,7 @@ public class ClienteDao {
         Cliente cliente = null;
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query query = sessao.createQuery("from Cliente where cpf = " + cpf);
+            org.hibernate.Query query = sessao.createQuery("from Cliente where cpf = '" + cpf + "'");
             List resultado = query.list();
             for (Object obj : resultado) {
                 cliente = (Cliente) obj;
