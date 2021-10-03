@@ -5,91 +5,77 @@ import java.util.ArrayList;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-public class LivrosTableModel implements TableModel
-{
+public class LivrosTableModel implements TableModel {
 
     private ArrayList<Livro> livros;
 
-    public LivrosTableModel(ArrayList<Livro> livros)
-    {
+    public LivrosTableModel(ArrayList<Livro> livros) {
         this.livros = livros;
     }
 
-    public ArrayList<Livro> getLivros()
-    {
+    public ArrayList<Livro> getLivros() {
         return livros;
     }
 
-    public void setLivros(ArrayList<Livro> livros)
-    {
+    public void setLivros(ArrayList<Livro> livros) {
         this.livros = livros;
     }
 
     @Override
-    public int getRowCount()
-    {
+    public int getRowCount() {
         return livros.size();
     }
 
     @Override
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return 8;
     }
 
     @Override
-    public String getColumnName(int columnIndex)
-    {
-        String[] vet =
-        {
-            "Id", "Disponível", "ISBN", "Ano", "Título", "Autor", "Editora", "Categoria"
-        };
+    public String getColumnName(int columnIndex) {
+        String[] vet
+                = {
+                    "Id", "Disponível", "ISBN", "Ano", "Título", "Autor", "Editora", "Categoria"
+                };
         return vet[columnIndex];
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex)
-    {
-        if (columnIndex == 0)
-        {
+    public Class<?> getColumnClass(int columnIndex) {
+        if (columnIndex == 0) {
             return Integer.class;
         }
         return String.class;
     }
 
-@Override
-public boolean isCellEditable(int i, int i1)
-    {
+    @Override
+    public boolean isCellEditable(int i, int i1) {
         return false;
     }
 
     @Override
-public Object getValueAt(int rowIndex, int columnIndex)
-    {
+    public Object getValueAt(int rowIndex, int columnIndex) {
         Livro aux = livros.get(rowIndex);
-        Object[] vet =
-        {
-            aux.getId(), aux.isDisponivelString(), aux.getIsbn(), aux.getAno(), aux.getTitulo(),
-            aux.getAutor().getNomeCompleto(), aux.getEditora().getNome(), aux.getCategoria().getNome()
-        };
+        Object[] vet
+                = {
+                    aux.getId(), aux.isDisponivelString(), aux.getIsbn(), aux.getAno(), aux.getTitulo(),
+                    aux.getAutor().getNomeCompleto(), aux.getEditora().getNome(), aux.getCategoria().getNome()
+                };
         return vet[columnIndex];
     }
 
     @Override
-public void setValueAt(Object o, int i, int i1)
-    {
+    public void setValueAt(Object o, int i, int i1) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-public void addTableModelListener(TableModelListener tl)
-    {
+    public void addTableModelListener(TableModelListener tl) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-public void removeTableModelListener(TableModelListener tl)
-    {
+    public void removeTableModelListener(TableModelListener tl) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

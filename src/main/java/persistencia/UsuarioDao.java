@@ -3,7 +3,6 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import negocio.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,7 +17,6 @@ public class UsuarioDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(usuario);
             transacao.commit();
-            JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
         } finally {
@@ -42,7 +40,6 @@ public class UsuarioDao {
                 usuario_bd.setCpf(usuario.getCpf());
                 sessao.update(usuario_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
@@ -59,7 +56,6 @@ public class UsuarioDao {
                 Usuario usuario_bd = (Usuario) obj;
                 sessao.delete(usuario_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();

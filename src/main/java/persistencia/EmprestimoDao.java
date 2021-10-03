@@ -3,7 +3,6 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import negocio.Emprestimo;
 import negocio.Livro;
 import org.hibernate.HibernateException;
@@ -19,7 +18,6 @@ public class EmprestimoDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(emprestimo);
             transacao.commit();
-            JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
         } finally {
@@ -36,13 +34,12 @@ public class EmprestimoDao {
             for (Object obj : resultado) {
                 Emprestimo emprestimo_bd = (Emprestimo) obj;
                 emprestimo_bd.setId(emprestimo.getId());
-                emprestimo_bd.setDataEmprestimo(emprestimo.getDataEmprestimo());
-                emprestimo_bd.setDataDevolucao(emprestimo.getDataDevolucao());
+                emprestimo_bd.setData_emprestimo(emprestimo.getData_emprestimo());
+                emprestimo_bd.setData_devolucao(emprestimo.getData_devolucao());
                 emprestimo_bd.setCliente(emprestimo.getCliente());
                 emprestimo_bd.setLivro(emprestimo.getLivro());
                 sessao.update(emprestimo_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();

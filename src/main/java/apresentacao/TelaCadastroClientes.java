@@ -17,7 +17,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame {
     private Cliente cliente;
 
     public TelaCadastroClientes() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
         novo = true;

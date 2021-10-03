@@ -7,6 +7,7 @@ negocio/Emprestimo.class
 apresentacao/TelaLogin$1.class
 apresentacao/TelaDefinicoes$1.class
 persistencia/LivroDao.class
+apresentacao/TelaDevolucao$4.class
 apresentacao/TelaEmprestimo.class
 apresentacao/TelaMenuPrincipal$12.class
 apresentacao/TelaEmprestimo$3.class
@@ -63,6 +64,7 @@ apresentacao/TelaMenuPrincipal$9.class
 persistencia/DefinicoesDao.class
 components/JMyCurrencyField.class
 apresentacao/TelaRelatorioLivros$5.class
+apresentacao/TelaEmprestimo$5.class
 apresentacao/TelaCadastroUsuarios.class
 apresentacao/TelaDevolucao$3.class
 negocio/Livro.class

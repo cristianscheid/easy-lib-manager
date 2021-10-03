@@ -1,9 +1,7 @@
 package apresentacao;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import negocio.Definicoes;
 import negocio.Emprestimo;
@@ -406,15 +404,16 @@ public class TelaDevolucao extends javax.swing.JFrame {
                 jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
                 jTextFieldNomeCompleto.setText(emprestimo.getCliente().getNome() + " " + emprestimo.getCliente().getSobrenome());
 //          Dados do empréstimo
-                jTextFieldDataEmprestimo.setText(emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                int diasEmprestado = Period.between(emprestimo.getDataEmprestimo(), LocalDate.now()).getDays();
-                jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
+                Date dataEmprestimo = emprestimo.getData_emprestimo();
+                Date dataAtual = new Date();
+                int diasEmprestado = (int) ((dataAtual.getTime() - dataEmprestimo.getTime()) / (1000 * 60 * 60 * 24));
                 int diasAtraso = 0;
                 if (diasEmprestado > definicoes.getPrazoEmprestimo()) {
                     diasAtraso = diasEmprestado - definicoes.getPrazoEmprestimo();
                 }
-                jTextFieldDiasAtraso.setText(String.valueOf(diasAtraso));
                 BigDecimal valorMulta = definicoes.getValorMulta().multiply(new BigDecimal(diasAtraso));
+                jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
+                jTextFieldDiasAtraso.setText(String.valueOf(diasAtraso));
                 jTextFieldValorMulta.setText(String.valueOf(valorMulta));
             }
         }
@@ -449,7 +448,8 @@ public class TelaDevolucao extends javax.swing.JFrame {
         livroDao.update(livro);
         EmprestimoDao emprestimoDao = new EmprestimoDao();
         emprestimo = emprestimoDao.readLivroEmprestado(livro);
-        emprestimo.setDataDevolucao(LocalDate.now());
+        Date dataAtual = new Date();
+        emprestimo.setData_devolucao(dataAtual);
         emprestimoDao.update(emprestimo);
         JOptionPane.showMessageDialog(null, "Devolução registrada com sucesso!");
         limparCampos();

@@ -3,7 +3,6 @@ package components;
 import java.text.*;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -160,4 +159,3 @@ public class Formatacao {
         return dataHoje;
     }
 }
-

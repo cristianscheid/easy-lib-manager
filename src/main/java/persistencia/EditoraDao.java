@@ -3,7 +3,6 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import negocio.Editora;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,7 +17,6 @@ public class EditoraDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(editora);
             transacao.commit();
-            JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
         } finally {
@@ -38,7 +36,6 @@ public class EditoraDao {
                 editora_bd.setNome(editora.getNome());
                 sessao.update(editora_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
@@ -55,7 +52,6 @@ public class EditoraDao {
                 Editora editora_bd = (Editora) obj;
                 sessao.delete(editora_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
@@ -96,7 +92,6 @@ public class EditoraDao {
         ArrayList<Editora> editoras = new ArrayList<>();
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
             org.hibernate.Query query = sessao.createQuery("from Editora");
             List resultado = query.list();
             for (Object obj : resultado) {

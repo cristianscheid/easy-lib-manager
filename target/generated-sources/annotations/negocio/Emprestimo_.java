@@ -1,20 +1,20 @@
 package negocio;
 
-import java.time.LocalDate;
+import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import negocio.Cliente;
 import negocio.Livro;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-09-25T17:04:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-10-03T15:21:24")
 @StaticMetamodel(Emprestimo.class)
 public class Emprestimo_ { 
 
     public static volatile SingularAttribute<Emprestimo, Cliente> cliente;
-    public static volatile SingularAttribute<Emprestimo, LocalDate> dataEmprestimo;
+    public static volatile SingularAttribute<Emprestimo, Date> data_emprestimo;
     public static volatile SingularAttribute<Emprestimo, Livro> livro;
+    public static volatile SingularAttribute<Emprestimo, Date> data_devolucao;
     public static volatile SingularAttribute<Emprestimo, Integer> id;
-    public static volatile SingularAttribute<Emprestimo, LocalDate> dataDevolucao;
 
 }

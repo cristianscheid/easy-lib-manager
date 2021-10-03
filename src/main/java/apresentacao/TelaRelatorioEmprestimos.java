@@ -1,12 +1,5 @@
 package apresentacao;
 
-import java.sql.Connection;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 public class TelaRelatorioEmprestimos extends javax.swing.JFrame {
 
     /**

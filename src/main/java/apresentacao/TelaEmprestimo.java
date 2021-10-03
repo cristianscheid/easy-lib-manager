@@ -1,6 +1,6 @@
 package apresentacao;
 
-import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import negocio.Cliente;
 import negocio.Emprestimo;
@@ -298,7 +298,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonRegistrarActionPerformed
     {//GEN-HEADEREND:event_jButtonRegistrarActionPerformed
-        LocalDate dataEmprestimo = LocalDate.now();
+        Date data_emprestimo = new Date();
         Cliente cliente;
         Livro livro;
 
@@ -325,7 +325,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
                     livro.setDisponivel(false);
                     livroDao.update(livro);
                     EmprestimoDao emprestimoDao = new EmprestimoDao();
-                    Emprestimo emprestimo = new Emprestimo(dataEmprestimo, null, cliente, livro);
+                    Emprestimo emprestimo = new Emprestimo(data_emprestimo, null, cliente, livro);
                     emprestimoDao.create(emprestimo);
                     JOptionPane.showMessageDialog(null, "Empréstimo registrado com sucesso!");
                     limparCamposLivro();
@@ -374,7 +374,6 @@ public class TelaEmprestimo extends javax.swing.JFrame {
             Cliente cliente = clienteDao.readCpf(jFormattedTextFieldCpf.getText());
             jTextFieldNome.setText(cliente.getNome() + " " + cliente.getSobrenome());
         } else {
-            JOptionPane.showMessageDialog(null, "CPF não encontrado na base de dados!");
             jTextFieldNome.setText("");
         }
     }//GEN-LAST:event_jFormattedTextFieldCpfFocusLost

@@ -1,8 +1,6 @@
 package components;
 
 import javax.swing.JFormattedTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 
 public class Validacao {
 
@@ -37,7 +35,7 @@ public class Validacao {
         return cnpj.equals(cnpj.substring(0, 12) + digito1.toString() + digito2.toString());
     }
 
-    public static boolean validarDataDMA (int d, int m, int a) {
+    public static boolean validarDataDMA(int d, int m, int a) {
         boolean correto = true;
         int[] dias = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if (a < 0 || m < 1 || m > 12) {
@@ -54,7 +52,7 @@ public class Validacao {
         return (correto);
     }
 
-    public static boolean validarDataFormatada (String dataComFormato) {
+    public static boolean validarDataFormatada(String dataComFormato) {
         String[] data = dataComFormato.split("/");
         return (validarDataDMA(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
     }

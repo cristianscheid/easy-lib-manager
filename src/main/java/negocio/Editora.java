@@ -28,7 +28,7 @@ public class Editora implements Serializable {
         this.id = id;
         this.nome = nome;
     }
-    
+
     public Editora() {
     }
 
@@ -47,6 +47,5 @@ public class Editora implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
 
 }

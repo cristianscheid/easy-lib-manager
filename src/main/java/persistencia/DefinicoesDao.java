@@ -3,7 +3,6 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.swing.JOptionPane;
 import negocio.Definicoes;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,7 +37,6 @@ public class DefinicoesDao {
                 definicoes_bd.setPrazoEmprestimo(definicoes.getPrazoEmprestimo());
                 sessao.update(definicoes_bd);
                 transacao.commit();
-                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();
