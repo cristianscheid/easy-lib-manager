@@ -27,26 +27,32 @@ public class Usuario implements Serializable {
     String senha;
     @Column(name = "cpf")
     String cpf;
+    @Column(name = "admin")
+    Boolean admin;
 
     public Usuario(String login, String senha) {
+        this.admin = true;
         this.login = login;
         this.senha = senha;
     }
 
-    public Usuario(int id, String nome, String sobrenome, String login, String cpf) {
+    public Usuario(int id, String nome, String sobrenome, String login, String senha, String cpf, Boolean admin) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.login = login;
+        this.senha = senha;
         this.cpf = cpf;
+        this.admin = admin;
     }
 
-    public Usuario(String nome, String sobrenome, String login, String senha, String cpf) {
+    public Usuario(String nome, String sobrenome, String login, String senha, String cpf, Boolean admin) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.login = login;
         this.senha = senha;
         this.cpf = cpf;
+        this.admin = admin;
     }
 
     public Usuario() {
@@ -98,6 +104,14 @@ public class Usuario implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
 }

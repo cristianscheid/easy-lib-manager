@@ -193,17 +193,17 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
-        new TelaCadastroUsuarios().setVisible(true);
+        new TelaCadastroUsuario().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
-        new TelaCadastroClientes().setVisible(true);
+        new TelaCadastroCliente().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarLivroActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
-        new TelaCadastroLivros().setVisible(true);
+        new TelaCadastroLivro().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
 
     private void jMenuItemListagemClientesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemClientesActionPerformed
@@ -288,7 +288,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemClientesActionPerformed
     {//GEN-HEADEREND:event_jMenuItemClientesActionPerformed
-        new TelaConsultaClientes().setVisible(true);
+        new TelaConsultaCliente().setVisible(true);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
     private void jMenuItemListagemLivrosEmprestadosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemLivrosEmprestadosActionPerformed

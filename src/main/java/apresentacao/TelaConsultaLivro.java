@@ -22,7 +22,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
         LivroDao dao = new LivroDao();
         ArrayList<Livro> livros = dao.readAll();
 
-        LivrosTableModel tm = new LivrosTableModel(livros);
+        LivroTableModel tm = new LivroTableModel(livros);
         jTableLivros.setModel(tm);
         jTableLivros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -40,7 +40,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
     }
 
     public void atualizarTabela(ArrayList<Livro> livros) {
-        LivrosTableModel tableModel = (LivrosTableModel) jTableLivros.getModel();
+        LivroTableModel tableModel = (LivroTableModel) jTableLivros.getModel();
         tableModel.setLivros(livros);
         jTableLivros.revalidate();
         jTableLivros.repaint();

@@ -48,11 +48,11 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <mapping class="apresentacao.ClientesTableModel"/>
-    <mapping class="apresentacao.LivrosTableModel"/>
-    <mapping class="apresentacao.TelaCadastroClientes"/>
-    <mapping class="apresentacao.TelaCadastroLivros"/>
-    <mapping class="apresentacao.TelaCadastroUsuarios"/>
-    <mapping class="apresentacao.TelaConsultaClientes"/>
+    <mapping class="apresentacao.LivroTableModel"/>
+    <mapping class="apresentacao.TelaCadastroCliente"/>
+    <mapping class="apresentacao.TelaCadastroLivro"/>
+    <mapping class="apresentacao.TelaCadastroUsuario"/>
+    <mapping class="apresentacao.TelaConsultaCliente"/>
     <mapping class="apresentacao.TelaConsultaLivro"/>
     <mapping class="apresentacao.TelaDefinicoes"/>
     <mapping class="apresentacao.TelaDevolucao"/>
@@ -61,6 +61,7 @@ Contributor(s):
     <mapping class="apresentacao.TelaMenuPrincipal"/>
     <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
     <mapping class="apresentacao.TelaRelatorioLivros"/>
+    <mapping class="apresentacao.UsuarioTableModel"/>
     <mapping class="easylibmanager.Main"/>
     <mapping class="negocio.Autor"/>
     <mapping class="negocio.Categoria"/>

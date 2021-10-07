@@ -38,6 +38,7 @@ public class UsuarioDao {
                 usuario_bd.setLogin(usuario.getLogin());
                 usuario_bd.setSenha(usuario.getSenha());
                 usuario_bd.setCpf(usuario.getCpf());
+                usuario_bd.setAdmin(usuario.getAdmin());
                 sessao.update(usuario_bd);
                 transacao.commit();
             }
@@ -108,7 +109,7 @@ public class UsuarioDao {
         }
         return usuario;
     }
-
+    
     public void createAdmin() {
         Usuario usuario = new Usuario("admin", "21232f297a57a5a743894a0e4a801fc3");
         Session sessao = null;
