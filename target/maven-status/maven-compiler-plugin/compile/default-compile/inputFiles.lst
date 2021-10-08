@@ -1,10 +1,10 @@
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipalUsuario.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/UsuarioTableModel.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaCadastroUsuario.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/CategoriaDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Usuario.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaCadastroCliente.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioLivros.java
-/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipal.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioEmprestimos.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Emprestimo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao2.java
@@ -24,11 +24,13 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/UsuarioDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaConsultaLivro.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Editora.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipalVisitante.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/HibernateUtil.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/EmprestimoDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Categoria.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyCpfField.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipalAdmin.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/DefinicoesDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/Main.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Livro.java

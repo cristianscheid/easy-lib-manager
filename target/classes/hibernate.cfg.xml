@@ -58,7 +58,9 @@ Contributor(s):
     <mapping class="apresentacao.TelaDevolucao"/>
     <mapping class="apresentacao.TelaEmprestimo"/>
     <mapping class="apresentacao.TelaLogin"/>
-    <mapping class="apresentacao.TelaMenuPrincipal"/>
+    <mapping class="apresentacao.TelaMenuPrincipalAdmin"/>
+    <mapping class="apresentacao.TelaMenuPrincipalUsuario"/>
+    <mapping class="apresentacao.TelaMenuPrincipalVisitante"/>
     <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
     <mapping class="apresentacao.TelaRelatorioLivros"/>
     <mapping class="apresentacao.UsuarioTableModel"/>

@@ -1,8 +1,8 @@
 package apresentacao;
 
-public class TelaMenuPrincipal extends javax.swing.JFrame {
+public class TelaMenuPrincipalUsuario extends javax.swing.JFrame {
 
-    public TelaMenuPrincipal() {
+    public TelaMenuPrincipalUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -26,12 +26,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItemCadastrarCliente = new javax.swing.JMenuItem();
         jMenuItemCadastrarLivro = new javax.swing.JMenuItem();
-        jMenuItemCadastraUsuario = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemLivros = new javax.swing.JMenuItem();
         jMenuItemClientes = new javax.swing.JMenuItem();
-        jMenuEditar = new javax.swing.JMenu();
-        jMenuItemDefinicoes = new javax.swing.JMenuItem();
         jMenuRelatorioLivrosCategoria = new javax.swing.JMenu();
         jMenuItemListagemClientes = new javax.swing.JMenuItem();
         jMenuItemListagemAutores = new javax.swing.JMenuItem();
@@ -81,14 +78,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemCadastrarLivro);
 
-        jMenuItemCadastraUsuario.setText("Usuário");
-        jMenuItemCadastraUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCadastraUsuarioActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItemCadastraUsuario);
-
         jMenuBar1.add(jMenu3);
 
         jMenuConsultas.setText("Consultas");
@@ -110,18 +99,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuConsultas.add(jMenuItemClientes);
 
         jMenuBar1.add(jMenuConsultas);
-
-        jMenuEditar.setText("Editar");
-
-        jMenuItemDefinicoes.setText("Definições");
-        jMenuItemDefinicoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemDefinicoesActionPerformed(evt);
-            }
-        });
-        jMenuEditar.add(jMenuItemDefinicoes);
-
-        jMenuBar1.add(jMenuEditar);
 
         jMenuRelatorioLivrosCategoria.setText("Impressões");
 
@@ -191,11 +168,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
-    {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
-        new TelaCadastroUsuario().setVisible(true);
-    }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
-
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
         new TelaCadastroCliente().setVisible(true);
@@ -227,7 +199,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 //            JasperViewer.viewReport(print, false);
 //        } catch (DataBaseException | JRException ex)
 //        {
-//            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(TelaMenuPrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_jMenuItemListagemClientesActionPerformed
 
@@ -240,11 +212,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_jMenuItemDevolucaoActionPerformed
         new TelaDevolucao().setVisible(true);
     }//GEN-LAST:event_jMenuItemDevolucaoActionPerformed
-
-    private void jMenuItemDefinicoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemDefinicoesActionPerformed
-    {//GEN-HEADEREND:event_jMenuItemDefinicoesActionPerformed
-        new TelaDefinicoes().setVisible(true);
-    }//GEN-LAST:event_jMenuItemDefinicoesActionPerformed
 
     private void jMenuItemLivrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemLivrosActionPerformed
     {//GEN-HEADEREND:event_jMenuItemLivrosActionPerformed
@@ -277,7 +244,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 //            JasperViewer.viewReport(print, false);
 //        } catch (DataBaseException | JRException ex)
 //        {
-//            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(TelaMenuPrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_jMenuItemListagemAutoresActionPerformed
 
@@ -312,7 +279,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 //            JasperViewer.viewReport(print, false);
 //        } catch (DataBaseException | JRException ex)
 //        {
-//            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(TelaMenuPrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_jMenuItemListagemLivrosEmprestadosActionPerformed
 
@@ -348,7 +315,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 //            JasperViewer.viewReport(print, false);
 //        } catch (DataBaseException | JRException ex)
 //        {
-//            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(TelaMenuPrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_jMenuItemMultasAbertoActionPerformed
 
@@ -369,14 +336,110 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -413,7 +476,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMenuPrincipal().setVisible(true);
+                new TelaMenuPrincipalUsuario().setVisible(true);
             }
         });
     }
@@ -425,12 +488,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
-    private javax.swing.JMenu jMenuEditar;
-    private javax.swing.JMenuItem jMenuItemCadastraUsuario;
     private javax.swing.JMenuItem jMenuItemCadastrarCliente;
     private javax.swing.JMenuItem jMenuItemCadastrarLivro;
     private javax.swing.JMenuItem jMenuItemClientes;
-    private javax.swing.JMenuItem jMenuItemDefinicoes;
     private javax.swing.JMenuItem jMenuItemDevolucao;
     private javax.swing.JMenuItem jMenuItemEmprestimo;
     private javax.swing.JMenuItem jMenuItemListagemAutores;
