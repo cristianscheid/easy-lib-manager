@@ -96,12 +96,9 @@ public class LivroDao {
     }
 
     public ArrayList<Livro> readFilter(Livro livro) {
-        String sql = "from Livro "
-                + "inner join autor ON livro.autor_id = autor.id "
-                + "inner join editora ON livro.editora_id = editora.id "
-                + "where 1=1";
+        String sql = "from Livro where 1=1";
         if (livro.getId() != 0) {
-            sql += " and livro.id = " + livro.getId() + "";
+            sql += " and id = " + livro.getId() + "";
         }
         if (livro.getIsbn() != null) {
             sql += " and isbn like '%" + livro.getIsbn() + "%'";
@@ -127,7 +124,7 @@ public class LivroDao {
         ArrayList<Livro> livros = new ArrayList<>();
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query query = sessao.createQuery("select * from autor order by id");
+            org.hibernate.Query query = sessao.createQuery(sql);
             List resultado = query.list();
             for (Object obj : resultado) {
                 livro = (Livro) obj;

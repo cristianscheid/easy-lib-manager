@@ -1,8 +1,11 @@
 package apresentacao;
 
 import components.JMyCpfField;
+import components.Validacao;
+import components.Validacao_old;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -43,7 +46,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     usuario = tableModel.getUsuarios().get(jTableUsuarios.getSelectedRow());
                     jTextFieldNome.setText(usuario.getNome());
                     jTextFieldSobrenome.setText(usuario.getSobrenome());
-                    jMyCpfField.setText(usuario.getCpf());
+                    jFormattedTextFieldCpf.setText(usuario.getCpf());
                     jCheckBoxAdmin.setSelected(usuario.getAdmin());
                     jTextFieldLogin.setText(usuario.getLogin());
                     novo = false;
@@ -77,11 +80,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jMyCpfField = new components.JMyCpfField();
         jTextFieldLogin = new javax.swing.JTextField();
         jCheckBoxAdmin = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
+        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
 
@@ -171,6 +174,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         jPasswordFieldSenha.setText("jPasswordField1");
 
+        try {
+            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextFieldCpfFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -193,21 +207,24 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldSobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNome)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jMyCpfField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldSobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldNome))
+                                .addGap(18, 18, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jFormattedTextFieldCpf)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBoxAdmin)))
-                        .addGap(18, 18, 18)
+                                .addComponent(jCheckBoxAdmin)
+                                .addGap(165, 165, 165)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldLogin)
-                            .addComponent(jPasswordFieldSenha)))
+                            .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonNovo)
                         .addGap(18, 18, 18)
@@ -237,10 +254,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jMyCpfField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel9)
-                    .addComponent(jCheckBoxAdmin))
+                    .addComponent(jCheckBoxAdmin)
+                    .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNovo)
@@ -310,15 +327,15 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
         String nome = jTextFieldNome.getText().strip();
         String sobrenome = jTextFieldSobrenome.getText().strip();
-        String cpf = jMyCpfField.getText();
+        String cpf = jFormattedTextFieldCpf.getText().replaceAll("[^0-9]", "");
         Boolean admin = jCheckBoxAdmin.isSelected();
         System.out.println(admin);
         String login = jTextFieldLogin.getText();
         String senha = Md5.getMd5(jPasswordFieldSenha.getText());
         if (jTextFieldNome.getText().strip().equals("") || jTextFieldSobrenome.getText().equals("")
-                || jPasswordFieldSenha.getText().equals("") || jMyCpfField.getText().contains(" ")) {
+                || jPasswordFieldSenha.getText().equals("") || jFormattedTextFieldCpf.getText().contains(" ")) {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
-        } else if (!jMyCpfField.isRight()) {
+        } else if (!Validacao_old.validarCPF(cpf)) {
             JOptionPane.showMessageDialog(null, "CPF inválido!");
         } else {
             if (novo) {
@@ -354,7 +371,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         novo = true;
         jTextFieldNome.setText("");
         jTextFieldSobrenome.setText("");
-        jMyCpfField.setText("");
+        jFormattedTextFieldCpf.setText("");
         jCheckBoxAdmin.setSelected(false);
         jTextFieldLogin.setText("");
         jPasswordFieldSenha.setText("");
@@ -389,6 +406,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldSobrenomeFocusLost
 
+    private void jFormattedTextFieldCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfFocusLost
+        String cpf = jFormattedTextFieldCpf.getText().replaceAll("[^0-9]", "");
+        if (!Validacao.validarCPF2(cpf)) {
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
+        }
+    }//GEN-LAST:event_jFormattedTextFieldCpfFocusLost
+
     public String getLogin() {
         return login;
     }
@@ -397,8 +421,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         return jCheckBoxAdmin;
     }
 
-    public JMyCpfField getjMyCpfField() {
-        return jMyCpfField;
+    public JFormattedTextField getjFormattedTextFieldCpf() {
+        return jFormattedTextFieldCpf;
     }
 
     public JPasswordField getjPasswordFieldSenha() {
@@ -526,6 +550,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBoxAdmin;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -536,7 +561,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private components.JMyCpfField jMyCpfField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;

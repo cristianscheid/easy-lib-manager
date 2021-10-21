@@ -1,7 +1,7 @@
 package apresentacao;
 
 import components.JMyNumberField;
-import components.Validacao2;
+import components.Validacao;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -351,11 +351,11 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
                 || jTextFieldAutor.getText().equals("") || jFormattedTextFieldAno.getText().equals("")
                 || jMyNumberFieldIsbn.getText().equals("") || jComboBoxCategoria.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
-        } else if (!Validacao2.validarIsbn(isbn) && !Validacao2.validarAno(ano)) {
+        } else if (!Validacao.validarIsbn(isbn) && !Validacao.validarAno(ano)) {
             JOptionPane.showMessageDialog(null, "ISBN e ano inválidos.");
-        } else if (!Validacao2.validarIsbn(isbn)) {
+        } else if (!Validacao.validarIsbn(isbn)) {
             JOptionPane.showMessageDialog(null, "ISBN inválido.");
-        } else if (!Validacao2.validarAno(ano)) {
+        } else if (!Validacao.validarAno(ano)) {
             JOptionPane.showMessageDialog(null, "Ano inválido.");
         } else {
             //Verificar se autor já existe. Se não existe, inserir no BD.

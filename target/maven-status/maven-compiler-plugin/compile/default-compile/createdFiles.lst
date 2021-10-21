@@ -7,6 +7,7 @@ apresentacao/TelaMenuPrincipalUsuario$5.class
 apresentacao/TelaMenuPrincipalAdmin$11.class
 apresentacao/TelaCadastroLivro$6.class
 apresentacao/TelaCadastroCliente$5.class
+components/Validacao_old.class
 apresentacao/TelaMenuPrincipalUsuario$12.class
 apresentacao/TelaRelatorioLivros.class
 negocio/Emprestimo.class
@@ -33,7 +34,6 @@ easylibmanager/Main.class
 negocio/Usuario_.class
 apresentacao/TelaMenuPrincipalUsuario.class
 apresentacao/TelaMenuPrincipalUsuario$3.class
-components/Validacao2.class
 apresentacao/TelaMenuPrincipalAdmin$4.class
 apresentacao/TelaRelatorioLivros$3.class
 apresentacao/TelaMenuPrincipalUsuario$10.class
@@ -83,6 +83,7 @@ apresentacao/TelaMenuPrincipalAdmin$3.class
 apresentacao/TelaConsultaCliente$1.class
 apresentacao/TelaRelatorioEmprestimos$2.class
 apresentacao/TelaCadastroUsuario.class
+apresentacao/TelaCadastroUsuario$9.class
 components/Validacao.class
 persistencia/Md5.class
 apresentacao/TelaLogin$2.class
@@ -100,6 +101,7 @@ apresentacao/TelaMenuPrincipalUsuario$6.class
 negocio/Categoria.class
 persistencia/UsuarioDao.class
 apresentacao/TelaCadastroLivro$4.class
+apresentacao/TelaCadastroCliente$7.class
 components/JMyCpfField$1.class
 components/Formatacao.class
 apresentacao/TelaCadastroCliente$3.class
@@ -116,6 +118,7 @@ apresentacao/TelaDevolucao$1.class
 apresentacao/TelaDevolucao.class
 apresentacao/TelaCadastroUsuario$2.class
 apresentacao/TelaMenuPrincipalUsuario$7.class
+components/ValidaCPF.class
 apresentacao/TelaRelatorioLivros$2.class
 negocio/Cliente_.class
 negocio/Usuario.class

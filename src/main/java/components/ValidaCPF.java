@@ -1,23 +1,10 @@
 package components;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 
-public class Validacao {
+public class ValidaCPF {
 
-    public static boolean validarIsbn(String isbn) {
-        return !(isbn == null || (isbn.length() != 10 && isbn.length() != 13));
-    }
-
-    public static boolean validarAno(int ano) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy");
-        String anoAtualString = dateTimeFormatter.format(LocalDate.now());
-        int anoAtualInt = Integer.parseInt(anoAtualString);
-        return !(ano < 1450 || ano > anoAtualInt);
-    }
-
-    public static boolean validarCPF2(String CPF) {
+    public static boolean isCPF(String CPF) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (CPF.equals("00000000000")
                 || CPF.equals("11111111111")
@@ -77,5 +64,10 @@ public class Validacao {
         } catch (InputMismatchException erro) {
             return (false);
         }
+    }
+
+    public static String imprimeCPF(String CPF) {
+        return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "."
+                + CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
     }
 }

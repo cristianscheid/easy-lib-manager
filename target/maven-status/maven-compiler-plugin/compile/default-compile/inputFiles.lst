@@ -7,7 +7,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioLivros.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioEmprestimos.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Emprestimo.java
-/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao2.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao_old.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/AutorDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaDefinicoes.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaCadastroLivro.java
@@ -38,5 +38,6 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyCurrencyField.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Autor.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/EditoraDao.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/ValidaCPF.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyNumberField.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Cliente.java

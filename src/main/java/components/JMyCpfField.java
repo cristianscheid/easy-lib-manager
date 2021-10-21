@@ -35,7 +35,7 @@ public class JMyCpfField extends JFormattedTextField {
         String aux = this.getText();
         if (!aux.isEmpty()) {
             aux = aux.replaceAll("[^0-9]", "");
-            right = Validacao.validarCPF(aux);
+            right = Validacao_old.validarCPF(aux);
         } else {
             right = false;
         }
