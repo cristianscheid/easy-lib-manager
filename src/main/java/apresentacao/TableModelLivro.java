@@ -1,44 +1,40 @@
 package apresentacao;
 
-import negocio.Cliente;
+import negocio.Livro;
 import java.util.ArrayList;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import negocio.Usuario;
 
-public class UsuarioTableModel implements TableModel {
+public class TableModelLivro implements TableModel {
 
-    private ArrayList<Usuario> usuarios;
+    private ArrayList<Livro> livros;
+    private String[] colunas = {"Id", "Disponível", "ISBN", "Ano", "Título", "Autor", "Editora", "Categoria"};
 
-    public UsuarioTableModel(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public TableModelLivro(ArrayList<Livro> livros) {
+        this.livros = livros;
     }
 
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
+    public ArrayList<Livro> getLivros() {
+        return livros;
     }
 
-    public void setClientes(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setLivros(ArrayList<Livro> livros) {
+        this.livros = livros;
     }
 
     @Override
     public int getRowCount() {
-        return usuarios.size();
+        return livros.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return colunas.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        String[] vet
-                = {
-                    "Admin", "Id", "CPF", "Login", "Nome", "Sobrenome"
-                };
-        return vet[columnIndex];
+        return colunas[columnIndex];
     }
 
     @Override
@@ -56,10 +52,17 @@ public class UsuarioTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Usuario aux = usuarios.get(rowIndex);
+        Livro aux = livros.get(rowIndex);
         Object[] vet
                 = {
-                    aux.getAdmin(), aux.getId(), aux.getCpf(), aux.getLogin(), aux.getNome(), aux.getSobrenome()
+                    aux.getId(),
+                    aux.getDisponivelString(),
+                    aux.getIsbn(),
+                    aux.getAno(),
+                    aux.getTitulo(),
+                    aux.getAutor().getNomeCompleto(),
+                    aux.getEditora().getNome(),
+                    aux.getCategoria().getNome(),
                 };
         return vet[columnIndex];
     }

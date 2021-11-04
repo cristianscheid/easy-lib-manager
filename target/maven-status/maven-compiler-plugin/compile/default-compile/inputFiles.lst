@@ -7,6 +7,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioLivros.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioEmprestimos.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Emprestimo.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/ClientesTableModel2.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao_old.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/AutorDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaDefinicoes.java
@@ -36,6 +37,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Livro.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaConsultaCliente.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyCurrencyField.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/Log4jDemo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Autor.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/EditoraDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/ValidaCPF.java

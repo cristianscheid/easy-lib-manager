@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.AuditTable;
-        
+
 @Audited
 @Entity
 @Table(name = "cliente")
@@ -32,17 +32,10 @@ public class Cliente implements Serializable {
     String telefone;
     @Column(name = "celular")
     String celular;
+    @Column(name = "excluido")
+    Boolean Excluido;
 
-    public Cliente(String nome, String sobrenome, String cpf, String email, String telefone, String celular) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.celular = celular;
-    }
-
-    public Cliente(int id, String nome, String sobrenome, String cpf, String email, String telefone, String celular) {
+    public Cliente(int id, String nome, String sobrenome, String cpf, String email, String telefone, String celular, Boolean Excluido) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -50,6 +43,17 @@ public class Cliente implements Serializable {
         this.email = email;
         this.telefone = telefone;
         this.celular = celular;
+        this.Excluido = Excluido;
+    }
+
+    public Cliente(String nome, String sobrenome, String cpf, String email, String telefone, String celular, Boolean Excluido) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.Excluido = Excluido;
     }
 
     public Cliente() {
@@ -59,56 +63,64 @@ public class Cliente implements Serializable {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    public String getCelular() {
+        return celular;
+    }
+
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public Boolean getExcluido() {
+        return Excluido;
+    }
+
+    public void setExcluido(Boolean Excluido) {
+        this.Excluido = Excluido;
     }
 
 }

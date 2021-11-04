@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.AuditTable;
-        
+
 @Audited
 @Entity
 @Table(name = "livro")
@@ -26,7 +25,7 @@ public class Livro {
     int ano;
     @Column(name = "titulo")
     String titulo;
-    @Column(name = "is_disponivel")
+    @Column(name = "disponivel")
     Boolean Disponivel;
     @OneToOne
     Autor autor;
@@ -34,8 +33,10 @@ public class Livro {
     Editora editora;
     @OneToOne
     Categoria categoria;
+    @Column(name = "excluido")
+    Boolean Excluido;
 
-    public Livro(int id, String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria) {
+    public Livro(int id, String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria, Boolean Excluido) {
         this.id = id;
         this.isbn = isbn;
         this.ano = ano;
@@ -44,9 +45,10 @@ public class Livro {
         this.autor = autor;
         this.editora = editora;
         this.categoria = categoria;
+        this.Excluido = Excluido;
     }
 
-    public Livro(String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria) {
+    public Livro(String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria, Boolean Excluido) {
         this.isbn = isbn;
         this.ano = ano;
         this.titulo = titulo;
@@ -54,6 +56,7 @@ public class Livro {
         this.autor = autor;
         this.editora = editora;
         this.categoria = categoria;
+        this.Excluido = Excluido;
     }
 
     public Livro() {
@@ -63,72 +66,82 @@ public class Livro {
         return id;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public Boolean isDisponivel() {
-        return Disponivel;
-    }
-
-    public String isDisponivelString() {
-        if (Disponivel) {
-            return "Sim";
-        } else {
-            return "Não";
-        }
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public Editora getEditora() {
-        return editora;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public String getIsbn() {
+        return isbn;
     }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
+    public int getAno() {
+        return ano;
+    }
+
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    public void setDisponivel(boolean Disponivel) {
+    public Boolean getDisponivel() {
+        return Disponivel;
+    }
+
+    public void setDisponivel(Boolean Disponivel) {
         this.Disponivel = Disponivel;
+    }
+
+    public Autor getAutor() {
+        return autor;
     }
 
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
+    public Editora getEditora() {
+        return editora;
+    }
+
     public void setEditora(Editora editora) {
         this.editora = editora;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Boolean getExcluido() {
+        return Excluido;
+    }
+
+    public void setExcluido(Boolean Excluido) {
+        this.Excluido = Excluido;
+    }
+
+    public String getDisponivelString() {
+        if (Excluido) {
+            return "Excluído";
+        } else if (Disponivel) {
+            return "Sim";
+        } else {
+            return "Não";
+        }
     }
 
 }

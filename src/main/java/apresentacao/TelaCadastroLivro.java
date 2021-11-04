@@ -17,6 +17,7 @@ import negocio.Livro;
 import persistencia.AutorDao;
 import persistencia.CategoriaDao;
 import persistencia.EditoraDao;
+import persistencia.EmprestimoDao;
 import persistencia.LivroDao;
 
 public class TelaCadastroLivro extends javax.swing.JFrame {
@@ -32,20 +33,21 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
 
         ArrayList<Livro> livros = new ArrayList();
         LivroDao dao = new LivroDao();
-        livros = dao.readAll();
+        livros = dao.readAllSemExcluidos();
 
-        LivroTableModel tm = new LivroTableModel(livros);
+        TableModelLivro tm = new TableModelLivro(livros);
         jTableLivros.setModel(tm);
         jTableLivros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        jButtonTornarDisponivel.setVisible(false);
 
         ListSelectionModel selectionModel = jTableLivros.getSelectionModel();
         selectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int row = jTableLivros.getSelectedRow();
-
                 if (row >= 0) {
-                    LivroTableModel tableModel = (LivroTableModel) jTableLivros.getModel();
+                    TableModelLivro tableModel = (TableModelLivro) jTableLivros.getModel();
                     livro = tableModel.getLivros().get(jTableLivros.getSelectedRow());
                     jTextFieldTitulo.setText(livro.getTitulo());
                     jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
@@ -54,6 +56,13 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
                     jMyNumberFieldIsbn.setText(livro.getIsbn());
                     jComboBoxCategoria.setSelectedIndex(livro.getCategoria().getId() - 1);
                     novo = false;
+                    if (livro.getExcluido()) {
+                        jButtonTornarDisponivel.setVisible(true);
+                        jButtonExcluir.setVisible(false);
+                    } else {
+                        jButtonTornarDisponivel.setVisible(false);
+                        jButtonExcluir.setVisible(true);
+                    }
                 }
             }
         });
@@ -73,10 +82,12 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     public void atualizarTabela() {
         ArrayList<Livro> livros = new ArrayList();
         LivroDao dao = new LivroDao();
-        livros = dao.readAll();
-
-        LivroTableModel tableModel = (LivroTableModel) jTableLivros.getModel();
-
+        if (jCheckBoxMostrarLivrosExcluidos.isSelected()) {
+            livros = dao.readAll();
+        } else {
+            livros = dao.readAllSemExcluidos();
+        }
+        TableModelLivro tableModel = (TableModelLivro) jTableLivros.getModel();
         tableModel.setLivros(livros);
         jTableLivros.revalidate();
         jTableLivros.repaint();
@@ -107,13 +118,15 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        Excluir = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jTextFieldTitulo = new javax.swing.JTextField();
         jTextFieldEditora = new javax.swing.JTextField();
         jTextFieldAutor = new javax.swing.JTextField();
         jMyNumberFieldIsbn = new components.JMyNumberField();
+        jCheckBoxMostrarLivrosExcluidos = new javax.swing.JCheckBox();
+        jButtonTornarDisponivel = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -185,10 +198,10 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
 
         jLabel14.setText("Autor(es):");
 
-        Excluir.setText("Excluir");
-        Excluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcluirActionPerformed(evt);
+                jButtonExcluirActionPerformed(evt);
             }
         });
 
@@ -203,6 +216,20 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxMostrarLivrosExcluidos.setText("Mostrar livros excluídos");
+        jCheckBoxMostrarLivrosExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMostrarLivrosExcluidosActionPerformed(evt);
+            }
+        });
+
+        jButtonTornarDisponivel.setText("Tornar disponível");
+        jButtonTornarDisponivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTornarDisponivelActionPerformed(evt);
             }
         });
 
@@ -232,7 +259,23 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
                             .addComponent(jTextFieldAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                             .addComponent(jTextFieldEditora)
                             .addComponent(jTextFieldTitulo))
-                        .addGap(18, 18, 18)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonSalvar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonNovo)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonExcluir)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonTornarDisponivel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
@@ -251,18 +294,7 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
                             .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonSalvar)
-                                .addGap(26, 26, 26)
-                                .addComponent(jButtonNovo)
-                                .addGap(32, 32, 32)
-                                .addComponent(Excluir)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jCheckBoxMostrarLivrosExcluidos))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -294,12 +326,15 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
                     .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxMostrarLivrosExcluidos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
-                    .addComponent(Excluir)
-                    .addComponent(jButtonNovo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButtonNovo)
+                    .addComponent(jButtonTornarDisponivel))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,7 +374,6 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         String isbn = jMyNumberFieldIsbn.getText();
         int ano = Integer.parseInt(jFormattedTextFieldAno.getText());
         String titulo = jTextFieldTitulo.getText();
-        boolean disponivel = true;
         int categoriaId = jComboBoxCategoria.getSelectedIndex() + 1;
         String nomeCompletoAutor = jTextFieldAutor.getText();
         String nomeEditora = jTextFieldEditora.getText();
@@ -382,13 +416,18 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
             if (novo) {
                 //Inserir o livro no BD.
                 LivroDao livroDao = new LivroDao();
-                Livro livro = new Livro(isbn, ano, titulo, disponivel, autor, editora, categoria);
+                Livro livro = new Livro(isbn, ano, titulo, true, autor, editora, categoria, false);
                 livroDao.create(livro);
                 JOptionPane.showMessageDialog(null, "Livro cadastrado com sucesso!");
             } else {
                 //Editar o livro no BD
                 LivroDao livroDao = new LivroDao();
-                Livro livro = new Livro(this.livro.getId(), isbn, ano, titulo, disponivel, autor, editora, categoria);
+                livro.setIsbn(isbn);
+                livro.setAutor(autor);
+                livro.setTitulo(titulo);
+                livro.setAutor(autor);
+                livro.setEditora(editora);
+                livro.setCategoria(categoria);
                 livroDao.update(livro);
                 JOptionPane.showMessageDialog(null, "Livro editado com sucesso!");
             }
@@ -396,24 +435,25 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ExcluirActionPerformed
-    {//GEN-HEADEREND:event_ExcluirActionPerformed
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonExcluirActionPerformed
+    {//GEN-HEADEREND:event_jButtonExcluirActionPerformed
         LivroDao livroDao = new LivroDao();
-        livroDao.delete(livro);
-        String[] options = new String[]{
-            "Sim", "Cancelar"
-        };
-        int response = JOptionPane.showOptionDialog(null, "Este livro consta no registro"
-                + " de empréstimos e por isso não pode ser excluído do banco de dados."
-                + "\n\nGostaria de torná-lo indisponível?", "Aviso",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, options, options[1]);
-        if (response == 0) {
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        if (livro.getExcluido()) {
+            JOptionPane.showMessageDialog(null, "Este livro já foi excluído!");
+        } else if (!livro.getDisponivel()) {
+            JOptionPane.showMessageDialog(null, "Este livro está emprestado no momento e só pode ser excluído após a sua devolução!");
+        } else if (emprestimoDao.livroPossuiRegistoEmprestimo(livro)) {
+            JOptionPane.showMessageDialog(null, "Este livro consta no registro de empréstimos, e por isso não será completamente removido "
+                    + "do banco de dados.\nPara vizualiar os livros excluídos, basta marcar a caixa de seleção \"Mostrar livros excluídos\".");
             livro.setDisponivel(false);
+            livro.setExcluido(true);
             livroDao.update(livro);
+        } else {
+            livroDao.delete(livro);
         }
         atualizarTabela();
-    }//GEN-LAST:event_ExcluirActionPerformed
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNovoActionPerformed
     {//GEN-HEADEREND:event_jButtonNovoActionPerformed
@@ -430,6 +470,18 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_FecharActionPerformed
         dispose();
     }//GEN-LAST:event_FecharActionPerformed
+
+    private void jCheckBoxMostrarLivrosExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMostrarLivrosExcluidosActionPerformed
+        atualizarTabela();
+    }//GEN-LAST:event_jCheckBoxMostrarLivrosExcluidosActionPerformed
+
+    private void jButtonTornarDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTornarDisponivelActionPerformed
+        LivroDao livroDao = new LivroDao();
+        livro.setDisponivel(true);
+        livro.setExcluido(false);
+        livroDao.update(livro);
+        atualizarTabela();
+    }//GEN-LAST:event_jButtonTornarDisponivelActionPerformed
 
     public JComboBox<Categoria> getjComboBoxCategoria() {
         return jComboBoxCategoria;
@@ -527,10 +579,12 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Excluir;
     private javax.swing.JButton Fechar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonTornarDisponivel;
+    private javax.swing.JCheckBox jCheckBoxMostrarLivrosExcluidos;
     private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldAno;

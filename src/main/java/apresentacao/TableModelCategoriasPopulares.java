@@ -1,43 +1,40 @@
 package apresentacao;
 
-import negocio.Cliente;
 import java.util.ArrayList;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import negocio.Categoria;
 
-public class ClientesTableModel implements TableModel {
+public class TableModelCategoriasPopulares implements TableModel {
 
-    private ArrayList<Cliente> clientes;
+    private ArrayList<Categoria> categorias;
+    private String[] colunas = {"Categoria"};
 
-    public ClientesTableModel(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
+    public TableModelCategoriasPopulares(ArrayList<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
-    public ArrayList<Cliente> getClientes() {
-        return clientes;
+    public ArrayList<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setCategorias(ArrayList<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     @Override
     public int getRowCount() {
-        return clientes.size();
+        return 10;
     }
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return colunas.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        String[] vet
-                = {
-                    "Id", "Nome", "Sobrenome", "CPF", "Email", "Telefone", "Celular"
-                };
-        return vet[columnIndex];
+        return colunas[columnIndex];
     }
 
     @Override
@@ -55,10 +52,10 @@ public class ClientesTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Cliente aux = clientes.get(rowIndex);
+        Categoria aux = categorias.get(rowIndex);
         Object[] vet
                 = {
-                    aux.getId(), aux.getNome(), aux.getSobrenome(), aux.getCpf(), aux.getEmail(), aux.getTelefone(), aux.getCelular()
+                    aux.getNome()
                 };
         return vet[columnIndex];
     }

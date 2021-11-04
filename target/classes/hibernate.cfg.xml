@@ -40,47 +40,49 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://177.44.248.53:3306/easylib_manager?createDatabaseIfNotExist=true</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.show_sql">true</property>
-    <mapping class="apresentacao.ClientesTableModel"/>
-    <mapping class="apresentacao.LivroTableModel"/>
-    <mapping class="apresentacao.TelaCadastroCliente"/>
-    <mapping class="apresentacao.TelaCadastroLivro"/>
-    <mapping class="apresentacao.TelaCadastroUsuario"/>
-    <mapping class="apresentacao.TelaConsultaCliente"/>
-    <mapping class="apresentacao.TelaConsultaLivro"/>
-    <mapping class="apresentacao.TelaDefinicoes"/>
-    <mapping class="apresentacao.TelaDevolucao"/>
-    <mapping class="apresentacao.TelaEmprestimo"/>
-    <mapping class="apresentacao.TelaLogin"/>
-    <mapping class="apresentacao.TelaMenuPrincipalAdmin"/>
-    <mapping class="apresentacao.TelaMenuPrincipalUsuario"/>
-    <mapping class="apresentacao.TelaMenuPrincipalVisitante"/>
-    <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
-    <mapping class="apresentacao.TelaRelatorioLivros"/>
-    <mapping class="apresentacao.UsuarioTableModel"/>
-    <mapping class="easylibmanager.Main"/>
-    <mapping class="negocio.Autor"/>
-    <mapping class="negocio.Categoria"/>
-    <mapping class="negocio.Cliente"/>
-    <mapping class="negocio.Definicoes"/>
-    <mapping class="negocio.Editora"/>
-    <mapping class="negocio.Emprestimo"/>
-    <mapping class="negocio.Livro"/>
-    <mapping class="negocio.Usuario"/>
-    <mapping class="persistencia.AutorDao"/>
-    <mapping class="persistencia.CategoriaDao"/>
-    <mapping class="persistencia.ClienteDao"/>
-    <mapping class="persistencia.DefinicoesDao"/>
-    <mapping class="persistencia.EditoraDao"/>
-    <mapping class="persistencia.EmprestimoDao"/>
-    <mapping class="persistencia.LivroDao"/>
-    <mapping class="persistencia.Md5"/>
-    <mapping class="persistencia.UsuarioDao"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://177.44.248.53:3306/easylib_manager?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping class="apresentacao.TableModelCliente"/>
+        <mapping class="apresentacao.TableModelEmprestimo"/>
+        <mapping class="apresentacao.TableModelLivro"/>
+        <mapping class="apresentacao.TableModelUsuario"/>
+        <mapping class="apresentacao.TelaCadastroCliente"/>
+        <mapping class="apresentacao.TelaCadastroLivro"/>
+        <mapping class="apresentacao.TelaCadastroUsuario"/>
+        <mapping class="apresentacao.TelaConsultaCliente"/>
+        <mapping class="apresentacao.TelaConsultaEmprestimo"/>
+        <mapping class="apresentacao.TelaConsultaLivro"/>
+        <mapping class="apresentacao.TelaDefinicoes"/>
+        <mapping class="apresentacao.TelaDevolucao"/>
+        <mapping class="apresentacao.TelaEmprestimo"/>
+        <mapping class="apresentacao.TelaLogin"/>
+        <mapping class="apresentacao.TelaMenuPrincipalAdmin"/>
+        <mapping class="apresentacao.TelaMenuPrincipalUsuario"/>
+        <mapping class="apresentacao.TelaMenuPrincipalVisitante"/>
+        <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
+        <mapping class="apresentacao.TelaRelatorioLivros"/>
+        <mapping class="easylibmanager.Main"/>
+        <mapping class="negocio.Autor"/>
+        <mapping class="negocio.Categoria"/>
+        <mapping class="negocio.Cliente"/>
+        <mapping class="negocio.Definicoes"/>
+        <mapping class="negocio.Editora"/>
+        <mapping class="negocio.Emprestimo"/>
+        <mapping class="negocio.Livro"/>
+        <mapping class="negocio.Usuario"/>
+        <mapping class="persistencia.AutorDao"/>
+        <mapping class="persistencia.CategoriaDao"/>
+        <mapping class="persistencia.ClienteDao"/>
+        <mapping class="persistencia.DefinicoesDao"/>
+        <mapping class="persistencia.EditoraDao"/>
+        <mapping class="persistencia.EmprestimoDao"/>
+        <mapping class="persistencia.LivroDao"/>
+        <mapping class="persistencia.Md5"/>
+        <mapping class="persistencia.UsuarioDao"/>
+    </session-factory>
 </hibernate-configuration>

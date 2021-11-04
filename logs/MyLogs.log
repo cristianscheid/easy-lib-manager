@@ -1,0 +1,16 @@
+
+[TRACE] 2021-10-22 16:47:52.988 [main] Log4jDemo - This is a trace message
+[INFO ] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a information message
+[ERROR] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a error message
+[WARN ] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a warning message
+[FATAL] 2021-10-22 16:47:52.992 [main] Log4jDemo - This is a fatal message
+[WARN ] 2021-10-22 16:47:55.740 [main] Log4jDemo - null
+[TRACE] 2021-10-22 16:48:31.956 [main] Log4jDemo - This is a trace message
+[INFO ] 2021-10-22 16:48:31.959 [main] Log4jDemo - This is a information message
+[ERROR] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a error message
+[WARN ] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a warning message
+[FATAL] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a fatal message
+[WARN ] 2021-10-22 16:48:34.441 [main] Log4jDemo - null
+java.lang.NullPointerException: null
+	at persistencia.ClienteDao.delete(ClienteDao.java:55) ~[classes/:?]
+	at easylibmanager.Log4jDemo.main(Log4jDemo.java:25) [classes/:?]

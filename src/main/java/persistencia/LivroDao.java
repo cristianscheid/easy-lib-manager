@@ -36,10 +36,11 @@ public class LivroDao {
                 livro_bd.setIsbn(livro.getIsbn());
                 livro_bd.setAno(livro.getAno());
                 livro_bd.setTitulo(livro.getTitulo());
-                livro_bd.setDisponivel(livro.isDisponivel());
+                livro_bd.setDisponivel(livro.getDisponivel());
                 livro_bd.setAutor(livro.getAutor());
                 livro_bd.setEditora(livro.getEditora());
                 livro_bd.setCategoria(livro.getCategoria());
+                livro_bd.setExcluido(livro.getExcluido());
                 sessao.update(livro_bd);
                 transacao.commit();
             }
@@ -94,6 +95,24 @@ public class LivroDao {
         }
         return livros;
     }
+    
+    public ArrayList<Livro> readAllSemExcluidos() {
+        ArrayList<Livro> livros = new ArrayList<>();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Livro order by id");
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                Livro livro = (Livro) obj;
+                if (!livro.getExcluido()) {
+                    livros.add(livro);
+                }
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return livros;
+    }
 
     public ArrayList<Livro> readFilter(Livro livro) {
         String sql = "from Livro where 1=1";
@@ -109,8 +128,8 @@ public class LivroDao {
         if (livro.getTitulo() != null) {
             sql += " and lower(titulo) like lower('%" + livro.getTitulo() + "%')";
         }
-        if (livro.isDisponivel() != null) {
-            sql += " and is_disponivel = " + livro.isDisponivel() + "";
+        if (livro.getDisponivel() != null) {
+            sql += " and disponivel = " + livro.getDisponivel() + "";
         }
         if (livro.getAutor() != null) {
             sql += " and lower(autor.nome_completo) like lower('%" + livro.getAutor().getNomeCompleto() + "%')";

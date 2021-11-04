@@ -1,43 +1,40 @@
 package apresentacao;
 
-import negocio.Livro;
 import java.util.ArrayList;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import negocio.Autor;
 
-public class LivroTableModel implements TableModel {
+public class TableModelAutoresPopulares implements TableModel {
 
-    private ArrayList<Livro> livros;
+    private ArrayList<Autor> autores;
+    private String[] colunas = {"Nome"};
 
-    public LivroTableModel(ArrayList<Livro> livros) {
-        this.livros = livros;
+    public TableModelAutoresPopulares(ArrayList<Autor> autores) {
+        this.autores = autores;
     }
 
-    public ArrayList<Livro> getLivros() {
-        return livros;
+    public ArrayList<Autor> getAutores() {
+        return autores;
     }
 
-    public void setLivros(ArrayList<Livro> livros) {
-        this.livros = livros;
+    public void setAutores(ArrayList<Autor> autores) {
+        this.autores = autores;
     }
 
     @Override
     public int getRowCount() {
-        return livros.size();
+        return 10;
     }
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return colunas.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        String[] vet
-                = {
-                    "Id", "Disponível", "ISBN", "Ano", "Título", "Autor", "Editora", "Categoria"
-                };
-        return vet[columnIndex];
+        return colunas[columnIndex];
     }
 
     @Override
@@ -55,11 +52,10 @@ public class LivroTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Livro aux = livros.get(rowIndex);
+        Autor aux = autores.get(rowIndex);
         Object[] vet
                 = {
-                    aux.getId(), aux.isDisponivelString(), aux.getIsbn(), aux.getAno(), aux.getTitulo(),
-                    aux.getAutor().getNomeCompleto(), aux.getEditora().getNome(), aux.getCategoria().getNome()
+                    aux.getNomeCompleto()
                 };
         return vet[columnIndex];
     }

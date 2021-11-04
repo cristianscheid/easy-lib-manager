@@ -1,6 +1,5 @@
 package apresentacao;
 
-import components.JMyCpfField;
 import components.Validacao;
 import components.Validacao_old;
 import java.util.ArrayList;
@@ -33,8 +32,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         ArrayList<Usuario> usuarios = new ArrayList();
         UsuarioDao usuarioDao = new UsuarioDao();
         usuarios = usuarioDao.readAll();
-        UsuarioTableModel tm = new UsuarioTableModel(usuarios);
+        TableModelUsuario tm = new TableModelUsuario(usuarios);
         jTableUsuarios.setModel(tm);
+//        jTableUsuarios.setAutoCreateRowSorter(true);
         jTableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel selectionModel = jTableUsuarios.getSelectionModel();
         selectionModel.addListSelectionListener(new ListSelectionListener() {
@@ -42,7 +42,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 int row = jTableUsuarios.getSelectedRow();
                 if (row >= 0) {
-                    UsuarioTableModel tableModel = (UsuarioTableModel) jTableUsuarios.getModel();
+                    TableModelUsuario tableModel = (TableModelUsuario) jTableUsuarios.getModel();
                     usuario = tableModel.getUsuarios().get(jTableUsuarios.getSelectedRow());
                     jTextFieldNome.setText(usuario.getNome());
                     jTextFieldSobrenome.setText(usuario.getSobrenome());
@@ -315,9 +315,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         UsuarioDao usuarioDao = new UsuarioDao();
         usuarios = usuarioDao.readAll();
 
-        UsuarioTableModel tableModel = (UsuarioTableModel) jTableUsuarios.getModel();
+        TableModelUsuario tableModel = (TableModelUsuario) jTableUsuarios.getModel();
 
-        tableModel.setClientes(usuarios);
+        tableModel.setUsuarios(usuarios);
         jTableUsuarios.revalidate();
         jTableUsuarios.repaint();
     }
@@ -359,7 +359,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             UsuarioDao usuarioDao = new UsuarioDao();
             usuarioDao.delete(usuario);
             atualizarTabela();
-
         } catch (HibernateException hibEx) {
             JOptionPane.showMessageDialog(null, "Este cliente consta no registro"
                     + " de empréstimos e por isso não pode ser excluído do banco de dados.");

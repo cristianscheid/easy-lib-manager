@@ -77,7 +77,7 @@ public class EditoraDao {
         Editora editora = null;
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query query = sessao.createQuery("from Editora nome = '" + nome + "'");
+            org.hibernate.Query query = sessao.createQuery("from Editora where nome = '" + nome + "'");
             List resultado = query.list();
             for (Object obj : resultado) {
                 editora = (Editora) obj;

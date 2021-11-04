@@ -319,7 +319,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
             }
 
             if (cliente != null && livro != null) {
-                if (!livro.isDisponivel()) {
+                if (!livro.getDisponivel()) {
                     JOptionPane.showMessageDialog(null, "Livro não disponível no momento!");
                 } else {
                     livro.setDisponivel(false);

@@ -93,7 +93,7 @@ public class AutorDao {
         Autor autor = null;
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query query = sessao.createQuery("from Autor where nome_completo = " + nomeCompleto);
+            org.hibernate.Query query = sessao.createQuery("from Autor where nome_completo = '" + nomeCompleto + "'");
             List resultado = query.list();
             for (Object obj : resultado) {
                 autor = (Autor) obj;

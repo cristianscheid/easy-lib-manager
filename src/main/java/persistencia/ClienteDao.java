@@ -3,7 +3,6 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import negocio.Autor;
 import negocio.Cliente;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -40,6 +39,7 @@ public class ClienteDao {
                 cliente_bd.setEmail(cliente.getEmail());
                 cliente_bd.setTelefone(cliente.getTelefone());
                 cliente_bd.setCelular(cliente.getCelular());
+                cliente_bd.setExcluido(cliente.getExcluido());
                 sessao.update(cliente_bd);
                 transacao.commit();
             }
@@ -55,8 +55,8 @@ public class ClienteDao {
             org.hibernate.Query query = sessao.createQuery("from Cliente where id = " + cliente.getId());
             List resultado = query.list();
             for (Object obj : resultado) {
-                Autor autor_bd = (Autor) obj;
-                sessao.delete(autor_bd);
+                Cliente cliente_bd = (Cliente) obj;
+                sessao.delete(cliente_bd);
                 transacao.commit();
             }
         } catch (HibernateException hibEx) {
@@ -88,6 +88,24 @@ public class ClienteDao {
             for (Object obj : resultado) {
                 Cliente cliente = (Cliente) obj;
                 clientes.add(cliente);
+            }
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        }
+        return clientes;
+    }
+
+    public ArrayList<Cliente> readAllSemExcluidos() {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            org.hibernate.Query query = sessao.createQuery("from Cliente");
+            List resultado = query.list();
+            for (Object obj : resultado) {
+                Cliente cliente = (Cliente) obj;
+                if (!cliente.getExcluido()) {
+                    clientes.add(cliente);
+                }
             }
         } catch (HibernateException hibEx) {
             hibEx.printStackTrace();

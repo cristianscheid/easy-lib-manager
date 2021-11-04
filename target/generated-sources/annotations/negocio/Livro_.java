@@ -7,7 +7,7 @@ import negocio.Autor;
 import negocio.Categoria;
 import negocio.Editora;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-10-21T13:12:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-11-01T16:12:46")
 @StaticMetamodel(Livro.class)
 public class Livro_ { 
 
@@ -19,5 +19,6 @@ public class Livro_ {
     public static volatile SingularAttribute<Livro, Boolean> Disponivel;
     public static volatile SingularAttribute<Livro, Editora> editora;
     public static volatile SingularAttribute<Livro, Autor> autor;
+    public static volatile SingularAttribute<Livro, Boolean> Excluido;
 
 }

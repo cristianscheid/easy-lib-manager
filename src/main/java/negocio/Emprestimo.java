@@ -12,8 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.AuditTable;
-        
+
 @Audited
 @Entity
 @Table(name = "emprestimo")
@@ -24,12 +23,12 @@ public class Emprestimo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
-//    @Column(name = "data_emprestimo")
+    @Column(name = "data_emprestimo")
     @Temporal(TemporalType.DATE)
-    Date data_emprestimo;
-//    @Column(name = "data_devolucao")
+    Date dataEmprestimo;
+    @Column(name = "data_devolucao")
     @Temporal(TemporalType.DATE)
-    Date data_devolucao;
+    Date dataDevolucao;
     @OneToOne
     Cliente cliente;
     @OneToOne
@@ -37,15 +36,15 @@ public class Emprestimo implements Serializable {
 
     public Emprestimo(int id, Date data_emprestimo, Date data_devolucao, Cliente cliente, Livro livro) {
         this.id = id;
-        this.data_emprestimo = data_emprestimo;
-        this.data_devolucao = data_devolucao;
+        this.dataEmprestimo = data_emprestimo;
+        this.dataDevolucao = data_devolucao;
         this.cliente = cliente;
         this.livro = livro;
     }
 
     public Emprestimo(Date data_emprestimo, Date data_devolucao, Cliente cliente, Livro livro) {
-        this.data_emprestimo = data_emprestimo;
-        this.data_devolucao = data_devolucao;
+        this.dataEmprestimo = data_emprestimo;
+        this.dataDevolucao = data_devolucao;
         this.cliente = cliente;
         this.livro = livro;
     }
@@ -61,20 +60,20 @@ public class Emprestimo implements Serializable {
         this.id = id;
     }
 
-    public Date getData_emprestimo() {
-        return data_emprestimo;
+    public Date getDataEmprestimo() {
+        return dataEmprestimo;
     }
 
-    public void setData_emprestimo(Date data_emprestimo) {
-        this.data_emprestimo = data_emprestimo;
+    public void setDataEmprestimo(Date dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
     }
 
-    public Date getData_devolucao() {
-        return data_devolucao;
+    public Date getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setData_devolucao(Date data_devolucao) {
-        this.data_devolucao = data_devolucao;
+    public void setDataDevolucao(Date dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public Cliente getCliente() {

@@ -12,7 +12,9 @@ apresentacao/TelaMenuPrincipalUsuario$12.class
 apresentacao/TelaRelatorioLivros.class
 negocio/Emprestimo.class
 apresentacao/TelaMenuPrincipalUsuario$2.class
+apresentacao/TelaCadastroCliente$8.class
 apresentacao/TelaLogin$1.class
+easylibmanager/Log4jDemo.class
 apresentacao/TelaCadastroUsuario$7.class
 apresentacao/UsuarioTableModel.class
 apresentacao/TelaDefinicoes$1.class
@@ -43,9 +45,11 @@ apresentacao/TelaEmprestimo$4.class
 apresentacao/TelaCadastroLivro$1.class
 apresentacao/TelaCadastroUsuario$5.class
 negocio/Editora_.class
+apresentacao/TelaRelatorioEmprestimos$4.class
 apresentacao/TelaDefinicoes$3.class
 apresentacao/TelaMenuPrincipalVisitante$1.class
 apresentacao/TelaCadastroCliente$6.class
+apresentacao/TelaCadastroLivro$8.class
 apresentacao/TelaMenuPrincipalAdmin$13.class
 components/JMyNumberField.class
 apresentacao/TelaConsultaCliente$2.class
@@ -88,11 +92,13 @@ components/Validacao.class
 persistencia/Md5.class
 apresentacao/TelaLogin$2.class
 apresentacao/TelaCadastroCliente$4.class
+apresentacao/TelaCadastroLivro$7.class
 persistencia/EmprestimoDao.class
 apresentacao/LivroTableModel.class
 apresentacao/TelaConsultaLivro$5.class
 apresentacao/TelaMenuPrincipalAdmin$10.class
 apresentacao/TelaMenuPrincipalUsuario$9.class
+apresentacao/ClientesTableModel2.class
 apresentacao/TelaMenuPrincipalAdmin.class
 negocio/Cliente.class
 apresentacao/TelaCadastroUsuario$6.class
@@ -120,6 +126,7 @@ apresentacao/TelaCadastroUsuario$2.class
 apresentacao/TelaMenuPrincipalUsuario$7.class
 components/ValidaCPF.class
 apresentacao/TelaRelatorioLivros$2.class
+apresentacao/TelaCadastroCliente$9.class
 negocio/Cliente_.class
 negocio/Usuario.class
 apresentacao/TelaCadastroCliente$2.class

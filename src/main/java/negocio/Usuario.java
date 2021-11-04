@@ -8,8 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.AuditTable;
-        
+
 @Audited
 @Entity
 @Table(name = "usuario")
@@ -115,6 +114,14 @@ public class Usuario implements Serializable {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
+    }
+
+    public String getAdminString() {
+        if (admin) {
+            return "Sim";
+        } else {
+            return "Não";
+        }
     }
 
 }

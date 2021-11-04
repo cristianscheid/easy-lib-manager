@@ -1,6 +1,7 @@
 package apresentacao;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import negocio.Definicoes;
@@ -376,11 +377,10 @@ public class TelaDevolucao extends javax.swing.JFrame {
         if (jMyNumberFieldCodigo.getText().isEmpty()) {
             limparCampos();
         } else {
-            Definicoes definicoes;
             Livro livro;
             Emprestimo emprestimo = null;
             DefinicoesDao definicoesDao = new DefinicoesDao();
-            definicoes = definicoesDao.read();
+            Definicoes definicoes = definicoesDao.read();
             LivroDao livroDao = new LivroDao();
             livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
             if (livro != null) {
@@ -404,7 +404,7 @@ public class TelaDevolucao extends javax.swing.JFrame {
                 jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
                 jTextFieldNomeCompleto.setText(emprestimo.getCliente().getNome() + " " + emprestimo.getCliente().getSobrenome());
 //          Dados do empréstimo
-                Date dataEmprestimo = emprestimo.getData_emprestimo();
+                Date dataEmprestimo = emprestimo.getDataEmprestimo();
                 Date dataAtual = new Date();
                 int diasEmprestado = (int) ((dataAtual.getTime() - dataEmprestimo.getTime()) / (1000 * 60 * 60 * 24));
                 int diasAtraso = 0;
@@ -412,6 +412,9 @@ public class TelaDevolucao extends javax.swing.JFrame {
                     diasAtraso = diasEmprestado - definicoes.getPrazoEmprestimo();
                 }
                 BigDecimal valorMulta = definicoes.getValorMulta().multiply(new BigDecimal(diasAtraso));
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                String stringDataEmprestimo = dateFormatter.format(dataEmprestimo);
+                jTextFieldDataEmprestimo.setText(stringDataEmprestimo);
                 jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
                 jTextFieldDiasAtraso.setText(String.valueOf(diasAtraso));
                 jTextFieldValorMulta.setText(String.valueOf(valorMulta));
@@ -449,7 +452,7 @@ public class TelaDevolucao extends javax.swing.JFrame {
         EmprestimoDao emprestimoDao = new EmprestimoDao();
         emprestimo = emprestimoDao.readLivroEmprestado(livro);
         Date dataAtual = new Date();
-        emprestimo.setData_devolucao(dataAtual);
+        emprestimo.setDataDevolucao(dataAtual);
         emprestimoDao.update(emprestimo);
         JOptionPane.showMessageDialog(null, "Devolução registrada com sucesso!");
         limparCampos();

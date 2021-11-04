@@ -22,9 +22,10 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
         LivroDao dao = new LivroDao();
         ArrayList<Livro> livros = dao.readAll();
 
-        LivroTableModel tm = new LivroTableModel(livros);
+        TableModelLivro tm = new TableModelLivro(livros);
         jTableLivros.setModel(tm);
         jTableLivros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        jTableLivros.setAutoCreateRowSorter(true);
 
         //Set 
         jTableLivros.getColumnModel().getColumn(0).setMaxWidth(40);
@@ -40,7 +41,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
     }
 
     public void atualizarTabela(ArrayList<Livro> livros) {
-        LivroTableModel tableModel = (LivroTableModel) jTableLivros.getModel();
+        TableModelLivro tableModel = (TableModelLivro) jTableLivros.getModel();
         tableModel.setLivros(livros);
         jTableLivros.revalidate();
         jTableLivros.repaint();
@@ -355,7 +356,6 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
         jFormattedTextFieldAno.setText("");
         jComboBoxDisponivel.setSelectedIndex(0);
         jComboBoxCategoria.setSelectedIndex(0);
-
         jButtonFiltrarActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 

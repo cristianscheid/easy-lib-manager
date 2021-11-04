@@ -14,7 +14,7 @@ public class CategoriaDao {
         Categoria categoria = null;
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query query = sessao.createQuery("from Categoria where id = " + categoria.getId());
+            org.hibernate.Query query = sessao.createQuery("from Categoria where id = " + id);
             List resultado = query.list();
             for (Object obj : resultado) {
                 categoria = (Categoria) obj;
