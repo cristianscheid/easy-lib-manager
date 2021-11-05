@@ -7,8 +7,12 @@ import negocio.Livro;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LivroDao {
+    
+    private static final Logger logger = LogManager.getLogger(LivroDao.class);
 
     public void create(Livro livro) {
         Session sessao = null;
@@ -17,8 +21,9 @@ public class LivroDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(livro);
             transacao.commit();
+            logger.trace("Livro " + livro.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -43,9 +48,10 @@ public class LivroDao {
                 livro_bd.setExcluido(livro.getExcluido());
                 sessao.update(livro_bd);
                 transacao.commit();
+                logger.trace("Livro " + livro.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -59,9 +65,10 @@ public class LivroDao {
                 Livro livro_bd = (Livro) obj;
                 sessao.delete(livro_bd);
                 transacao.commit();
+                logger.trace("Livro " + livro.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -75,7 +82,7 @@ public class LivroDao {
                 livro = (Livro) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return livro;
     }
@@ -91,7 +98,7 @@ public class LivroDao {
                 livros.add(livro);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return livros;
     }
@@ -109,7 +116,7 @@ public class LivroDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return livros;
     }
@@ -150,7 +157,7 @@ public class LivroDao {
                 livros.add(livro);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return livros;
     }

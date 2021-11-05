@@ -7,8 +7,12 @@ import negocio.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class UsuarioDao {
+
+    private static final Logger logger = LogManager.getLogger(UsuarioDao.class);
 
     public void create(Usuario usuario) {
         Session sessao = null;
@@ -17,8 +21,9 @@ public class UsuarioDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(usuario);
             transacao.commit();
+            logger.trace("Usuario " + usuario.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -41,9 +46,10 @@ public class UsuarioDao {
                 usuario_bd.setAdmin(usuario.getAdmin());
                 sessao.update(usuario_bd);
                 transacao.commit();
+                logger.trace("Usuario " + usuario.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -57,9 +63,10 @@ public class UsuarioDao {
                 Usuario usuario_bd = (Usuario) obj;
                 sessao.delete(usuario_bd);
                 transacao.commit();
+                logger.trace("Usuario " + usuario.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -73,7 +80,7 @@ public class UsuarioDao {
                 usuario = (Usuario) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return usuario;
     }
@@ -89,7 +96,7 @@ public class UsuarioDao {
                 usuarios.add(usuario);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return usuarios;
     }
@@ -105,11 +112,11 @@ public class UsuarioDao {
                 usuario = (Usuario) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return usuario;
     }
-    
+
     public void createAdmin() {
         Usuario usuario = new Usuario("admin", "21232f297a57a5a743894a0e4a801fc3");
         Session sessao = null;
@@ -119,7 +126,7 @@ public class UsuarioDao {
             sessao.save(usuario);
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }

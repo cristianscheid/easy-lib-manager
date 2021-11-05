@@ -1,16 +1,25 @@
-
-[TRACE] 2021-10-22 16:47:52.988 [main] Log4jDemo - This is a trace message
-[INFO ] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a information message
-[ERROR] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a error message
-[WARN ] 2021-10-22 16:47:52.991 [main] Log4jDemo - This is a warning message
-[FATAL] 2021-10-22 16:47:52.992 [main] Log4jDemo - This is a fatal message
-[WARN ] 2021-10-22 16:47:55.740 [main] Log4jDemo - null
-[TRACE] 2021-10-22 16:48:31.956 [main] Log4jDemo - This is a trace message
-[INFO ] 2021-10-22 16:48:31.959 [main] Log4jDemo - This is a information message
-[ERROR] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a error message
-[WARN ] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a warning message
-[FATAL] 2021-10-22 16:48:31.960 [main] Log4jDemo - This is a fatal message
-[WARN ] 2021-10-22 16:48:34.441 [main] Log4jDemo - null
+[TRACE] 2021-11-04 12:38:49.109 [main] Log4jDemo - This is a trace message
+[INFO ] 2021-11-04 12:38:49.112 [main] Log4jDemo - This is a information message
+[WARN ] 2021-11-04 12:38:49.113 [main] Log4jDemo - This is a warning message
+[ERROR] 2021-11-04 12:38:49.113 [main] Log4jDemo - This is a error message
+[FATAL] 2021-11-04 12:38:49.113 [main] Log4jDemo - This is a fatal message
+[WARN ] 2021-11-04 12:38:51.551 [main] Log4jDemo - null
 java.lang.NullPointerException: null
 	at persistencia.ClienteDao.delete(ClienteDao.java:55) ~[classes/:?]
 	at easylibmanager.Log4jDemo.main(Log4jDemo.java:25) [classes/:?]
+[TRACE] 2021-11-04 12:38:57.342 [main] Log4jDemo - This is a trace message
+[INFO ] 2021-11-04 12:38:57.345 [main] Log4jDemo - This is a information message
+[WARN ] 2021-11-04 12:38:57.345 [main] Log4jDemo - This is a warning message
+[ERROR] 2021-11-04 12:38:57.346 [main] Log4jDemo - This is a error message
+[FATAL] 2021-11-04 12:38:57.346 [main] Log4jDemo - This is a fatal message
+[WARN ] 2021-11-04 12:38:59.809 [main] Log4jDemo - null
+java.lang.NullPointerException: null
+	at persistencia.ClienteDao.delete(ClienteDao.java:55) ~[classes/:?]
+	at easylibmanager.Log4jDemo.main(Log4jDemo.java:25) [classes/:?]
+[ERROR] 2021-11-04 12:44:41.077 [main] AutorDao - Autor  created
+[TRACE] 2021-11-04 12:45:39.181 [AWT-EventQueue-0] AutorDao - Autor 53 created
+[TRACE] 2021-11-04 12:46:10.947 [AWT-EventQueue-0] AutorDao - Autor 54 created
+[TRACE] 2021-11-04 12:46:29.836 [AWT-EventQueue-0] AutorDao - Autor 55 created
+[TRACE] 2021-11-04 14:54:04.907 [AWT-EventQueue-0] LivroDao - Livro 18 updated
+[TRACE] 2021-11-04 21:04:56.858 [AWT-EventQueue-0] ClienteDao - Cliente 1 updated
+[TRACE] 2021-11-04 21:05:10.436 [AWT-EventQueue-0] LivroDao - Livro 12 updated

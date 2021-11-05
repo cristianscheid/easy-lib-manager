@@ -2,9 +2,7 @@ package persistencia;
 
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -19,8 +17,12 @@ import negocio.Livro;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EmprestimoDao {
+
+    private static final Logger logger = LogManager.getLogger(EmprestimoDao.class);
 
     public void create(Emprestimo emprestimo) {
         Session sessao = null;
@@ -29,8 +31,9 @@ public class EmprestimoDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(emprestimo);
             transacao.commit();
+            logger.trace("Emprestimo " + emprestimo.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -51,9 +54,10 @@ public class EmprestimoDao {
                 emprestimo_bd.setLivro(emprestimo.getLivro());
                 sessao.update(emprestimo_bd);
                 transacao.commit();
+                logger.trace("Emprestimo " + emprestimo.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -68,7 +72,7 @@ public class EmprestimoDao {
                 emprestimos.add(emprestimo);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return emprestimos;
     }
@@ -141,7 +145,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientesEmprestimoAtivo;
     }
@@ -158,7 +162,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientesSemEmprestimoAtivo;
     }
@@ -187,7 +191,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientesMultaAberto;
     }
@@ -224,7 +228,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientesSemMultaAberto;
     }
@@ -239,7 +243,7 @@ public class EmprestimoDao {
                 emprestimo = (Emprestimo) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return emprestimo;
     }
@@ -254,7 +258,7 @@ public class EmprestimoDao {
                 possuiRegistroEmprestimo = false;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return possuiRegistroEmprestimo;
     }
@@ -269,7 +273,7 @@ public class EmprestimoDao {
                 possuiRegistroEmprestimo = false;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return possuiRegistroEmprestimo;
     }

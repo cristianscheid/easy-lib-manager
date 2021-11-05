@@ -7,8 +7,12 @@ import negocio.Editora;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EditoraDao {
+
+    private static final Logger logger = LogManager.getLogger(EditoraDao.class);
 
     public void create(Editora editora) {
         Session sessao = null;
@@ -17,8 +21,9 @@ public class EditoraDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(editora);
             transacao.commit();
+            logger.trace("Editora " + editora.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -36,9 +41,10 @@ public class EditoraDao {
                 editora_bd.setNome(editora.getNome());
                 sessao.update(editora_bd);
                 transacao.commit();
+                logger.trace("Editora " + editora.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -52,9 +58,10 @@ public class EditoraDao {
                 Editora editora_bd = (Editora) obj;
                 sessao.delete(editora_bd);
                 transacao.commit();
+                logger.trace("Editora " + editora.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -68,7 +75,7 @@ public class EditoraDao {
                 editora = (Editora) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return editora;
     }
@@ -83,7 +90,7 @@ public class EditoraDao {
                 editora = (Editora) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return editora;
     }
@@ -99,7 +106,7 @@ public class EditoraDao {
                 editoras.add(editora);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return editoras;
     }

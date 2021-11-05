@@ -1,7 +1,9 @@
 package apresentacao;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import negocio.Autor;
 import negocio.Categoria;
@@ -80,6 +82,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
         jButtonLimparFiltros = new javax.swing.JButton();
         jMyNumberFieldCodigo = new components.JMyNumberField();
         jMyNumberFieldIsbn = new components.JMyNumberField();
+        jButtonImprimir = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -151,6 +154,13 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
             }
         });
 
+        jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,6 +212,8 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
                         .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonLimparFiltros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonImprimir)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -243,7 +255,8 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonFiltrar)
-                    .addComponent(jButtonLimparFiltros))
+                    .addComponent(jButtonLimparFiltros)
+                    .addComponent(jButtonImprimir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -359,6 +372,21 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
         jButtonFiltrarActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        MessageFormat header = new MessageFormat("Lista de Livros");
+        MessageFormat footer = new MessageFormat("EasyLib Manager - Página {0,number, integer}");
+        try {
+            Boolean complete = jTableLivros.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Done Printing...");
+            } else {
+                JOptionPane.showMessageDialog(null, "Printing...");
+            }
+        } catch (java.awt.print.PrinterException e) {
+            System.err.printf("Cannot print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +431,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JButton jButtonImprimir;
     private javax.swing.JButton jButtonLimparFiltros;
     private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxDisponivel;

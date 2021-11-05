@@ -3,12 +3,16 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import negocio.Autor;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class AutorDao {
+
+    private static final Logger logger = LogManager.getLogger(AutorDao.class);
 
     public void create(Autor autor) {
         Session sessao = null;
@@ -17,8 +21,9 @@ public class AutorDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(autor);
             transacao.commit();
+            logger.trace("Autor " + autor.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -36,9 +41,10 @@ public class AutorDao {
                 autor_bd.setNomeCompleto(autor.getNomeCompleto());
                 sessao.update(autor_bd);
                 transacao.commit();
+                logger.trace("Autor " + autor.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -52,9 +58,10 @@ public class AutorDao {
                 Autor autor_bd = (Autor) obj;
                 sessao.delete(autor_bd);
                 transacao.commit();
+                logger.trace("Autor " + autor.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -68,7 +75,7 @@ public class AutorDao {
                 autor = (Autor) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return autor;
     }
@@ -84,7 +91,7 @@ public class AutorDao {
                 autores.add(autor);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return autores;
     }
@@ -99,33 +106,16 @@ public class AutorDao {
                 autor = (Autor) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return autor;
     }
-//        String sql = "SELECT * FROM autor WHERE nome_completo = '" + nomeCompleto + "'";
-//        Autor autor = null;
-//        try {
-//            ResultSet rs = connection.runQuerySQL(sql);
-//
-//            if (rs.isBeforeFirst()) {
-//                rs.next();
-//                int id_autor = rs.getInt("id");
-//                autor = new Autor(id_autor, nomeCompleto);
-//            }
-//
-//        } catch (SQLException ex) {
-//            throw new DataBaseException(ex.getMessage());
-//        }
-//        return autor;
-//    }
 
     public ArrayList<Autor> readFilter(Autor autor) {
         String sql = "from autor where 1=1";
         if (autor.getNomeCompleto() != null) {
             sql += " and lower(nome_completo) like lower('%" + autor.getNomeCompleto() + "%')";
         }
-
         ArrayList<Autor> autores = new ArrayList<>();
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
@@ -136,26 +126,8 @@ public class AutorDao {
                 autores.add(autor);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return autores;
     }
 }
-
-//        ArrayList<Autor> autores = new ArrayList<>();
-//        Autor aux = null;
-//        try {
-//            ResultSet rs = connection.runQuerySQL(sql);
-//            if (rs.isBeforeFirst()) {
-//                while (rs.next()) {
-//                    int id = rs.getInt("id");
-//                    String NomeCompleto = rs.getString("nome_completo");
-//                    aux = new Autor(id, NomeCompleto);
-//                    autores.add(aux);
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            throw new DataBaseException(ex.getMessage());
-//        }
-//        return autores;
-//    }

@@ -7,8 +7,12 @@ import negocio.Cliente;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ClienteDao {
+
+    private static final Logger logger = LogManager.getLogger(ClienteDao.class);
 
     public void create(Cliente cliente) {
         Session sessao = null;
@@ -17,8 +21,9 @@ public class ClienteDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(cliente);
             transacao.commit();
+            logger.trace("Cliente " + cliente.getId() + " created");
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -42,9 +47,10 @@ public class ClienteDao {
                 cliente_bd.setExcluido(cliente.getExcluido());
                 sessao.update(cliente_bd);
                 transacao.commit();
+                logger.trace("Cliente " + cliente.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -58,9 +64,10 @@ public class ClienteDao {
                 Cliente cliente_bd = (Cliente) obj;
                 sessao.delete(cliente_bd);
                 transacao.commit();
+                logger.trace("Cliente " + cliente.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
     }
 
@@ -74,7 +81,7 @@ public class ClienteDao {
                 cliente = (Cliente) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return cliente;
     }
@@ -90,7 +97,7 @@ public class ClienteDao {
                 clientes.add(cliente);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientes;
     }
@@ -108,7 +115,7 @@ public class ClienteDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientes;
     }
@@ -146,7 +153,7 @@ public class ClienteDao {
                 clientes.add(cliente);
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return clientes;
     }
@@ -161,26 +168,8 @@ public class ClienteDao {
                 cliente = (Cliente) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return cliente;
     }
 }
-//    public ArrayList read(Filter filter) throws DataBaseException
-//    {
-//        ArrayList<Cliente> clientesFiltrados = new ArrayList();
-//        ArrayList<Cliente> clientes = this.readAll();
-//        for (Cliente cliente : clientes)
-//        {
-//            if (filter.isApproved(cliente))
-//            {
-//                clientesFiltrados.add(cliente);
-//            }
-//        }
-//        return clientesFiltrados;
-//    }
-//
-//    public Cliente readName(String name) throws DataBaseException
-//    {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }

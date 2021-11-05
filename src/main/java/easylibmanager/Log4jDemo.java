@@ -15,8 +15,8 @@ public class Log4jDemo {
 
         logger.trace("This is a trace message");
         logger.info("This is a information message");
-        logger.error("This is a error message");
         logger.warn("This is a warning message");
+        logger.error("This is a error message");
         logger.fatal("This is a fatal message");
 
         try {

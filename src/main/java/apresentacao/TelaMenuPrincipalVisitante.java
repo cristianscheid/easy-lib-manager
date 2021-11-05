@@ -51,7 +51,7 @@ public class TelaMenuPrincipalVisitante extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCategoriasPopulares = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemLivros = new javax.swing.JMenuItem();
@@ -161,7 +161,7 @@ public class TelaMenuPrincipalVisitante extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("Fechar");
+        jButtonSair.setText("Sair");
 
         jMenuConsultas.setText("Consultas");
 
@@ -199,7 +199,7 @@ public class TelaMenuPrincipalVisitante extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonSair)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,7 +216,7 @@ public class TelaMenuPrincipalVisitante extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonSair)
                 .addContainerGap())
         );
 
@@ -522,7 +522,7 @@ public class TelaMenuPrincipalVisitante extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -47,9 +47,13 @@ Contributor(s):
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
+        <mapping class="apresentacao.TableModelAutoresPopulares"/>
+        <mapping class="apresentacao.TableModelCategoriasPopulares"/>
         <mapping class="apresentacao.TableModelCliente"/>
+        <mapping class="apresentacao.TableModelClientesMultaAberto"/>
         <mapping class="apresentacao.TableModelEmprestimo"/>
         <mapping class="apresentacao.TableModelLivro"/>
+        <mapping class="apresentacao.TableModelLivrosPopulares"/>
         <mapping class="apresentacao.TableModelUsuario"/>
         <mapping class="apresentacao.TelaCadastroCliente"/>
         <mapping class="apresentacao.TelaCadastroLivro"/>
@@ -64,8 +68,6 @@ Contributor(s):
         <mapping class="apresentacao.TelaMenuPrincipalAdmin"/>
         <mapping class="apresentacao.TelaMenuPrincipalUsuario"/>
         <mapping class="apresentacao.TelaMenuPrincipalVisitante"/>
-        <mapping class="apresentacao.TelaRelatorioEmprestimos"/>
-        <mapping class="apresentacao.TelaRelatorioLivros"/>
         <mapping class="easylibmanager.Main"/>
         <mapping class="negocio.Autor"/>
         <mapping class="negocio.Categoria"/>

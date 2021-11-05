@@ -7,8 +7,12 @@ import negocio.Definicoes;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DefinicoesDao {
+
+    private static final Logger logger = LogManager.getLogger(ClienteDao.class);
 
     public void createDefinicoesIniciais() {
         Definicoes definicoes = new Definicoes(BigDecimal.valueOf(0), 15);
@@ -19,7 +23,7 @@ public class DefinicoesDao {
             sessao.save(definicoes);
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         } finally {
             sessao.close();
         }
@@ -37,12 +41,11 @@ public class DefinicoesDao {
                 definicoes_bd.setPrazoEmprestimo(definicoes.getPrazoEmprestimo());
                 sessao.update(definicoes_bd);
                 transacao.commit();
+                logger.trace("Definicoes updated");
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
-//            String sql = "UPDATE definicoes SET valor_multa = '" + String.valueOf(definicoes.getValorMulta()) + "', "
-//                    + "prazo_emprestimo = '" + String.valueOf(definicoes.getPrazoEmprestimo()) + "'";
     }
 
     public Definicoes read() {
@@ -55,7 +58,7 @@ public class DefinicoesDao {
                 definicoes = (Definicoes) obj;
             }
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error(hibEx.getMessage(), hibEx);
         }
         return definicoes;
     }
