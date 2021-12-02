@@ -4,15 +4,15 @@ import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import negocio.Cliente;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class ClienteDao {
 
-    private static final Logger logger = LogManager.getLogger(ClienteDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Cliente cliente) {
         Session sessao = null;
@@ -21,10 +21,11 @@ public class ClienteDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(cliente);
             transacao.commit();
-            logger.trace("Cliente " + cliente.getId() + " created");
+            log = new Log("TRACE", "Cliente " + cliente.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -47,11 +48,12 @@ public class ClienteDao {
                 cliente_bd.setExcluido(cliente.getExcluido());
                 sessao.update(cliente_bd);
                 transacao.commit();
-                logger.trace("Cliente " + cliente.getId() + " updated");
+                log = new Log("TRACE", "Cliente " + cliente.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public void delete(Cliente cliente) {
@@ -64,11 +66,12 @@ public class ClienteDao {
                 Cliente cliente_bd = (Cliente) obj;
                 sessao.delete(cliente_bd);
                 transacao.commit();
-                logger.trace("Cliente " + cliente.getId() + " deleted");
+                log = new Log("TRACE", "Cliente " + cliente.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Cliente read(int id) {
@@ -81,7 +84,8 @@ public class ClienteDao {
                 cliente = (Cliente) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return cliente;
     }
@@ -97,7 +101,8 @@ public class ClienteDao {
                 clientes.add(cliente);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientes;
     }
@@ -115,7 +120,8 @@ public class ClienteDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientes;
     }
@@ -153,7 +159,8 @@ public class ClienteDao {
                 clientes.add(cliente);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientes;
     }
@@ -168,7 +175,8 @@ public class ClienteDao {
                 cliente = (Cliente) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return cliente;
     }

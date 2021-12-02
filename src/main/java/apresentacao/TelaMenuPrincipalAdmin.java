@@ -1,7 +1,7 @@
 package apresentacao;
 
 public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
-
+    
     public TelaMenuPrincipalAdmin() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,6 +32,7 @@ public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
         jMenuItemClientes = new javax.swing.JMenuItem();
         jMenuItemEmprestimos = new javax.swing.JMenuItem();
         jMenuItemLivros = new javax.swing.JMenuItem();
+        jMenuItemLogs = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenu();
         jMenuItemDefinicoes = new javax.swing.JMenuItem();
 
@@ -119,6 +120,14 @@ public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemLivros);
 
+        jMenuItemLogs.setText("Logs");
+        jMenuItemLogs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLogsActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemLogs);
+
         jMenuBar1.add(jMenuConsultas);
 
         jMenuEditar.setText("Editar");
@@ -202,6 +211,10 @@ public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jMenuItemLogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogsActionPerformed
+        new TelaConsultaLogs().setVisible(true);
+    }//GEN-LAST:event_jMenuItemLogsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,6 +332,7 @@ public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemEmprestimo;
     private javax.swing.JMenuItem jMenuItemEmprestimos;
     private javax.swing.JMenuItem jMenuItemLivros;
+    private javax.swing.JMenuItem jMenuItemLogs;
     private javax.swing.JMenu jMenuMovimentacoes;
     // End of variables declaration//GEN-END:variables
 }

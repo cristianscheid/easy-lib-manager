@@ -54,6 +54,7 @@ Contributor(s):
         <mapping class="apresentacao.TableModelEmprestimo"/>
         <mapping class="apresentacao.TableModelLivro"/>
         <mapping class="apresentacao.TableModelLivrosPopulares"/>
+        <mapping class="apresentacao.TableModelLog"/>
         <mapping class="apresentacao.TableModelUsuario"/>
         <mapping class="apresentacao.TelaCadastroCliente"/>
         <mapping class="apresentacao.TelaCadastroLivro"/>
@@ -61,6 +62,7 @@ Contributor(s):
         <mapping class="apresentacao.TelaConsultaCliente"/>
         <mapping class="apresentacao.TelaConsultaEmprestimo"/>
         <mapping class="apresentacao.TelaConsultaLivro"/>
+        <mapping class="apresentacao.TelaConsultaLogs"/>
         <mapping class="apresentacao.TelaDefinicoes"/>
         <mapping class="apresentacao.TelaDevolucao"/>
         <mapping class="apresentacao.TelaEmprestimo"/>
@@ -76,6 +78,7 @@ Contributor(s):
         <mapping class="negocio.Editora"/>
         <mapping class="negocio.Emprestimo"/>
         <mapping class="negocio.Livro"/>
+        <mapping class="negocio.Log"/>
         <mapping class="negocio.Usuario"/>
         <mapping class="persistencia.AutorDao"/>
         <mapping class="persistencia.CategoriaDao"/>
@@ -84,6 +87,7 @@ Contributor(s):
         <mapping class="persistencia.EditoraDao"/>
         <mapping class="persistencia.EmprestimoDao"/>
         <mapping class="persistencia.LivroDao"/>
+        <mapping class="persistencia.LogDao"/>
         <mapping class="persistencia.Md5"/>
         <mapping class="persistencia.UsuarioDao"/>
     </session-factory>

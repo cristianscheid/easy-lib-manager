@@ -1,7 +1,11 @@
 package apresentacao;
 
+import com.toedter.calendar.JDateChooser;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -47,8 +51,8 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooserInicial = new com.toedter.calendar.JDateChooser();
+        jDateChooserFinal = new com.toedter.calendar.JDateChooser();
         jComboBoxMultaAberto = new javax.swing.JComboBox<>();
         jComboBoxEmprestimoAtivo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -88,6 +92,10 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Filtros");
+
+        jDateChooserInicial.setDateFormatString("dd/MM/yyyy");
+
+        jDateChooserFinal.setDateFormatString("dd/MM/yyyy");
 
         jComboBoxMultaAberto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Sim", "Não" }));
 
@@ -141,12 +149,12 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(192, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -160,12 +168,12 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel10)
                                 .addComponent(jComboBoxEmprestimoAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,14 +244,25 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
         if (jComboBoxMultaAberto.getSelectedIndex() == 2) {
             emprestimos = dao.readEmprestimosSemMultaAberto(emprestimos);
         }
-
+        if (jDateChooserInicial.getDate() != null && jDateChooserFinal.getDate() != null) {
+            emprestimos = dao.readEmprestimosPeriodo(emprestimos, jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+        }
+        if (jDateChooserInicial.getDate() != null && jDateChooserFinal.getDate() == null) {
+            Date datafinal = new Date();
+            emprestimos = dao.readEmprestimosPeriodo(emprestimos, jDateChooserInicial.getDate(), datafinal);
+        }
+        if (jDateChooserInicial.getDate() == null && jDateChooserFinal.getDate() != null) {
+            Date dataInicial = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();
+            emprestimos = dao.readEmprestimosPeriodo(emprestimos, dataInicial, jDateChooserFinal.getDate());
+        }
         atualizarTabela(emprestimos);
-
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
     private void jButtonLimparFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparFiltrosActionPerformed
         jComboBoxEmprestimoAtivo.setSelectedIndex(0);
         jComboBoxMultaAberto.setSelectedIndex(0);
+        jDateChooserInicial.setCalendar(null);
+        jDateChooserFinal.setCalendar(null);
         jButtonFiltrarActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 
@@ -304,8 +323,8 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLimparFiltros;
     private javax.swing.JComboBox<String> jComboBoxEmprestimoAtivo;
     private javax.swing.JComboBox<String> jComboBoxMultaAberto;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooserFinal;
+    private com.toedter.calendar.JDateChooser jDateChooserInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

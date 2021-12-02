@@ -3,16 +3,16 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
+import negocio.Log;
 import negocio.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class UsuarioDao {
 
-    private static final Logger logger = LogManager.getLogger(UsuarioDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Usuario usuario) {
         Session sessao = null;
@@ -21,10 +21,11 @@ public class UsuarioDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(usuario);
             transacao.commit();
-            logger.trace("Usuario " + usuario.getId() + " created");
+            log = new Log("TRACE", "Usuario " + usuario.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -46,11 +47,12 @@ public class UsuarioDao {
                 usuario_bd.setAdmin(usuario.getAdmin());
                 sessao.update(usuario_bd);
                 transacao.commit();
-                logger.trace("Usuario " + usuario.getId() + " updated");
+                log = new Log("TRACE", "Usuario " + usuario.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public void delete(Usuario usuario) {
@@ -63,11 +65,12 @@ public class UsuarioDao {
                 Usuario usuario_bd = (Usuario) obj;
                 sessao.delete(usuario_bd);
                 transacao.commit();
-                logger.trace("Usuario " + usuario.getId() + " deleted");
+                log = new Log("TRACE", "Usuario " + usuario.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Usuario read(int id) {
@@ -80,7 +83,8 @@ public class UsuarioDao {
                 usuario = (Usuario) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return usuario;
     }
@@ -96,7 +100,8 @@ public class UsuarioDao {
                 usuarios.add(usuario);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return usuarios;
     }
@@ -112,21 +117,23 @@ public class UsuarioDao {
                 usuario = (Usuario) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return usuario;
     }
 
-    public void createAdmin() {
-        Usuario usuario = new Usuario("admin", "21232f297a57a5a743894a0e4a801fc3");
+    public void createAdminEVisitante() {
+        Usuario usuarioAdmin = new Usuario("Admin", "Admin", "admin", "21232f297a57a5a743894a0e4a801fc3", "-", true);
         Session sessao = null;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction transacao = sessao.beginTransaction();
-            sessao.save(usuario);
+            sessao.save(usuarioAdmin);
             transacao.commit();
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         } finally {
             sessao.close();
         }

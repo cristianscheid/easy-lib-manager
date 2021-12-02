@@ -4,15 +4,15 @@ import easylibmanager.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.List;
 import negocio.Definicoes;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class DefinicoesDao {
 
-    private static final Logger logger = LogManager.getLogger(ClienteDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void createDefinicoesIniciais() {
         Definicoes definicoes = new Definicoes(BigDecimal.valueOf(0), 15);
@@ -23,7 +23,8 @@ public class DefinicoesDao {
             sessao.save(definicoes);
             transacao.commit();
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         } finally {
             sessao.close();
         }
@@ -41,11 +42,12 @@ public class DefinicoesDao {
                 definicoes_bd.setPrazoEmprestimo(definicoes.getPrazoEmprestimo());
                 sessao.update(definicoes_bd);
                 transacao.commit();
-                logger.trace("Definicoes updated");
+                log = new Log("TRACE", "Definicoes updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Definicoes read() {
@@ -58,7 +60,8 @@ public class DefinicoesDao {
                 definicoes = (Definicoes) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return definicoes;
     }

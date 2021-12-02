@@ -14,15 +14,15 @@ import negocio.Cliente;
 import negocio.Definicoes;
 import negocio.Emprestimo;
 import negocio.Livro;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EmprestimoDao {
 
-    private static final Logger logger = LogManager.getLogger(EmprestimoDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Emprestimo emprestimo) {
         Session sessao = null;
@@ -31,10 +31,11 @@ public class EmprestimoDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(emprestimo);
             transacao.commit();
-            logger.trace("Emprestimo " + emprestimo.getId() + " created");
+            log = new Log("TRACE", "Emprestimo " + emprestimo.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -54,10 +55,11 @@ public class EmprestimoDao {
                 emprestimo_bd.setLivro(emprestimo.getLivro());
                 sessao.update(emprestimo_bd);
                 transacao.commit();
-                logger.trace("Emprestimo " + emprestimo.getId() + " updated");
+                log = new Log("TRACE", "Emprestimo " + emprestimo.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
     }
 
@@ -72,7 +74,8 @@ public class EmprestimoDao {
                 emprestimos.add(emprestimo);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return emprestimos;
     }
@@ -95,6 +98,18 @@ public class EmprestimoDao {
             }
         }
         return emprestimosNaoAtivo;
+    }
+
+    public ArrayList<Emprestimo> readEmprestimosPeriodo(ArrayList<Emprestimo> emprestimos, Date dataInicial, Date dataFinal) {
+        ArrayList<Emprestimo> emprestimosPeriodo = new ArrayList<>();
+        for (Emprestimo emprestimo : emprestimos) {
+//            if (emprestimo.getDataEmprestimo().after(dataInicial) || emprestimo.getDataEmprestimo().before(dataFinal)
+//                    || emprestimo.getDataEmprestimo().equals(dataInicial) || emprestimo.getDataEmprestimo().equals(dataFinal)) {
+            if (emprestimo.getDataEmprestimo().compareTo(dataInicial) >= 0 && emprestimo.getDataEmprestimo().compareTo(dataFinal) <= 0) {
+                emprestimosPeriodo.add(emprestimo);
+            }
+        }
+        return emprestimosPeriodo;
     }
 
     public ArrayList<Emprestimo> readEmprestimosMultaAberto(ArrayList<Emprestimo> emprestimos) {
@@ -145,7 +160,8 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientesEmprestimoAtivo;
     }
@@ -162,7 +178,8 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientesSemEmprestimoAtivo;
     }
@@ -191,7 +208,8 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientesMultaAberto;
     }
@@ -228,7 +246,8 @@ public class EmprestimoDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return clientesSemMultaAberto;
     }
@@ -243,7 +262,8 @@ public class EmprestimoDao {
                 emprestimo = (Emprestimo) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return emprestimo;
     }
@@ -258,7 +278,8 @@ public class EmprestimoDao {
                 possuiRegistroEmprestimo = false;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return possuiRegistroEmprestimo;
     }
@@ -273,7 +294,8 @@ public class EmprestimoDao {
                 possuiRegistroEmprestimo = false;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return possuiRegistroEmprestimo;
     }

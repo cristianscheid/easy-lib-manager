@@ -4,15 +4,15 @@ import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import negocio.Editora;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EditoraDao {
 
-    private static final Logger logger = LogManager.getLogger(EditoraDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Editora editora) {
         Session sessao = null;
@@ -21,10 +21,11 @@ public class EditoraDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(editora);
             transacao.commit();
-            logger.trace("Editora " + editora.getId() + " created");
+            log = new Log("TRACE", "Editora " + editora.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -41,11 +42,12 @@ public class EditoraDao {
                 editora_bd.setNome(editora.getNome());
                 sessao.update(editora_bd);
                 transacao.commit();
-                logger.trace("Editora " + editora.getId() + " updated");
+                log = new Log("TRACE", "Editora " + editora.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public void delete(Editora editora) {
@@ -58,11 +60,12 @@ public class EditoraDao {
                 Editora editora_bd = (Editora) obj;
                 sessao.delete(editora_bd);
                 transacao.commit();
-                logger.trace("Editora " + editora.getId() + " deleted");
+                log = new Log("TRACE", "Editora " + editora.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Editora read(int id) {
@@ -75,7 +78,8 @@ public class EditoraDao {
                 editora = (Editora) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return editora;
     }
@@ -90,7 +94,8 @@ public class EditoraDao {
                 editora = (Editora) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return editora;
     }
@@ -106,7 +111,8 @@ public class EditoraDao {
                 editoras.add(editora);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return editoras;
     }

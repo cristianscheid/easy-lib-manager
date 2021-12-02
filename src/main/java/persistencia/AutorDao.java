@@ -3,16 +3,16 @@ package persistencia;
 import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import negocio.Autor;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class AutorDao {
 
-    private static final Logger logger = LogManager.getLogger(AutorDao.class);
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Autor autor) {
         Session sessao = null;
@@ -21,10 +21,11 @@ public class AutorDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(autor);
             transacao.commit();
-            logger.trace("Autor " + autor.getId() + " created");
+            log = new Log("TRACE", "Autor " + autor.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -41,11 +42,12 @@ public class AutorDao {
                 autor_bd.setNomeCompleto(autor.getNomeCompleto());
                 sessao.update(autor_bd);
                 transacao.commit();
-                logger.trace("Autor " + autor.getId() + " updated");
+                log = new Log("TRACE", "Autor " + autor.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public void delete(Autor autor) {
@@ -58,11 +60,12 @@ public class AutorDao {
                 Autor autor_bd = (Autor) obj;
                 sessao.delete(autor_bd);
                 transacao.commit();
-                logger.trace("Autor " + autor.getId() + " deleted");
+                log = new Log("TRACE", "Autor " + autor.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Autor read(int id) {
@@ -75,7 +78,8 @@ public class AutorDao {
                 autor = (Autor) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return autor;
     }
@@ -91,7 +95,8 @@ public class AutorDao {
                 autores.add(autor);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return autores;
     }
@@ -106,7 +111,8 @@ public class AutorDao {
                 autor = (Autor) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return autor;
     }
@@ -126,7 +132,8 @@ public class AutorDao {
                 autores.add(autor);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return autores;
     }

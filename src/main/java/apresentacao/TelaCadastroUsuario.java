@@ -322,7 +322,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jTableUsuarios.repaint();
     }
 
-
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
         String nome = jTextFieldNome.getText().strip();

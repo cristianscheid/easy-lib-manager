@@ -1,5 +1,6 @@
 package apresentacao;
 
+import easylibmanager.Main;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -132,6 +133,7 @@ public class TelaLogin extends javax.swing.JFrame {
         UsuarioDao dao = new UsuarioDao();
         Usuario usuarioAutenticar = new Usuario(login, senha);
         if (dao.readLoginPassword(usuarioAutenticar) != null) {
+            Main.usuario = dao.readLoginPassword(usuarioAutenticar);
             if (dao.readLoginPassword(usuarioAutenticar).getAdmin() == true) {
                 TelaMenuPrincipalAdmin telaMenu = new TelaMenuPrincipalAdmin();
                 telaMenu.setVisible(true);
@@ -147,6 +149,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonEntrarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarVisitanteActionPerformed
+        Main.usuario = new Usuario();
+        Main.usuario.setNome("Visitante");
         TelaMenuPrincipalVisitante telaMenu = new TelaMenuPrincipalVisitante();
         telaMenu.setVisible(true);
         dispose();
@@ -217,7 +221,6 @@ public class TelaLogin extends javax.swing.JFrame {
     public void setjTextFieldLogin(JTextField jTextFieldLogin) {
         this.jTextFieldLogin = jTextFieldLogin;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEntrar;

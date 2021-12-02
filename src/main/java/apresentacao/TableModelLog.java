@@ -1,30 +1,31 @@
 package apresentacao;
 
-import negocio.Livro;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import negocio.Log;
 
-public class TableModelLivro implements TableModel {
+public class TableModelLog implements TableModel {
 
-    private ArrayList<Livro> livros;
-    private String[] colunas = {"Id", "Disponível", "ISBN", "Ano", "Título", "Autor", "Editora", "Categoria"};
+    private ArrayList<Log> logs;
+    private String[] colunas = {"Id", "Usuario", "IP", "Tipo", "Data/Hora", "Mensagem"};
 
-    public TableModelLivro(ArrayList<Livro> livros) {
-        this.livros = livros;
+    public TableModelLog(ArrayList<Log> logs) {
+        this.logs = logs;
     }
 
-    public ArrayList<Livro> getLivros() {
-        return livros;
+    public ArrayList<Log> getLogs() {
+        return logs;
     }
 
-    public void setLivros(ArrayList<Livro> livros) {
-        this.livros = livros;
+    public void setLogs(ArrayList<Log> logs) {
+        this.logs = logs;
     }
 
     @Override
     public int getRowCount() {
-        return livros.size();
+        return logs.size();
     }
 
     @Override
@@ -52,17 +53,19 @@ public class TableModelLivro implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Livro aux = livros.get(rowIndex);
+        Log aux = logs.get(rowIndex);
+//        colunas = {"Id", "Usuario", "IP", "Tipo", "Data/Hora", "Mensagem"};
         Object[] vet
                 = {
                     aux.getId(),
-                    aux.getDisponivelString(),
-                    aux.getIsbn(),
-                    aux.getAno(),
-                    aux.getTitulo(),
-                    aux.getAutor().getNomeCompleto(),
-                    aux.getEditora().getNome(),
-                    aux.getCategoria().getNome(),};
+//                    aux.getUsuario().getNome(),
+                    "qqcoisa",
+                    aux.getIp(),
+                    aux.getTipo(),
+                    aux.getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss")),
+                    aux.getMensagem()
+                };
+
         return vet[columnIndex];
     }
 

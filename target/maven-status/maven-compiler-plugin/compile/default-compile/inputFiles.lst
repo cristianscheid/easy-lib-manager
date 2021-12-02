@@ -2,7 +2,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/CategoriaDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Usuario.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaCadastroCliente.java
-/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioLivros.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/LogDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelClientesMultaAberto.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaConsultaEmprestimo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelAutoresPopulares.java
@@ -22,12 +22,12 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Cliente.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelLivro.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipalUsuario.java
-/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaRelatorioEmprestimos.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Emprestimo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelCliente.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelEmprestimo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao_old.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/AutorDao.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelLog.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaDefinicoes.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaCadastroLivro.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Formatacao.java
@@ -38,6 +38,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/HibernateUtil.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyCpfField.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/Validacao.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaConsultaLogs.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TelaMenuPrincipalAdmin.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/apresentacao/TableModelLivrosPopulares.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/Main.java
@@ -45,6 +46,7 @@
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyCurrencyField.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/easylibmanager/Log4jDemo.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Autor.java
+/home/cristian/Documents/java_projects/EasyLibManager/src/main/java/negocio/Log.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/persistencia/EditoraDao.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/ValidaCPF.java
 /home/cristian/Documents/java_projects/EasyLibManager/src/main/java/components/JMyNumberField.java

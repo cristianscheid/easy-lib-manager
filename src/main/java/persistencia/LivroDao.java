@@ -4,15 +4,15 @@ import easylibmanager.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import negocio.Livro;
+import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class LivroDao {
-    
-    private static final Logger logger = LogManager.getLogger(LivroDao.class);
+
+    private Log log;
+    private LogDao logDao = new LogDao();
 
     public void create(Livro livro) {
         Session sessao = null;
@@ -21,10 +21,11 @@ public class LivroDao {
             Transaction transacao = sessao.beginTransaction();
             sessao.save(livro);
             transacao.commit();
-            logger.trace("Livro " + livro.getId() + " created");
+            log = new Log("TRACE", "Livro " + livro.getId() + " created");
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         } finally {
+            logDao.create(log);
             sessao.close();
         }
     }
@@ -48,11 +49,12 @@ public class LivroDao {
                 livro_bd.setExcluido(livro.getExcluido());
                 sessao.update(livro_bd);
                 transacao.commit();
-                logger.trace("Livro " + livro.getId() + " updated");
+                log = new Log("TRACE", "Livro " + livro.getId() + " updated");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public void delete(Livro livro) {
@@ -65,11 +67,12 @@ public class LivroDao {
                 Livro livro_bd = (Livro) obj;
                 sessao.delete(livro_bd);
                 transacao.commit();
-                logger.trace("Livro " + livro.getId() + " deleted");
+                log = new Log("TRACE", "Livro " + livro.getId() + " deleted");
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
         }
+        logDao.create(log);
     }
 
     public Livro read(int id) {
@@ -82,7 +85,8 @@ public class LivroDao {
                 livro = (Livro) obj;
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return livro;
     }
@@ -98,11 +102,12 @@ public class LivroDao {
                 livros.add(livro);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return livros;
     }
-    
+
     public ArrayList<Livro> readAllSemExcluidos() {
         ArrayList<Livro> livros = new ArrayList<>();
         try {
@@ -116,7 +121,8 @@ public class LivroDao {
                 }
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return livros;
     }
@@ -157,7 +163,8 @@ public class LivroDao {
                 livros.add(livro);
             }
         } catch (HibernateException hibEx) {
-            logger.error(hibEx.getMessage(), hibEx);
+            log = new Log("ERROR", hibEx.getMessage());
+            logDao.create(log);
         }
         return livros;
     }
