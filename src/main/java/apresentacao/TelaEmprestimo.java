@@ -1,13 +1,14 @@
 package apresentacao;
 
-import java.util.Date;
-import javax.swing.JOptionPane;
 import negocio.Cliente;
 import negocio.Emprestimo;
 import negocio.Livro;
 import persistencia.ClienteDao;
 import persistencia.EmprestimoDao;
 import persistencia.LivroDao;
+
+import javax.swing.*;
+import java.util.Date;
 
 public class TelaEmprestimo extends javax.swing.JFrame {
 

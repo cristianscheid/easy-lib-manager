@@ -1,6 +1,6 @@
 package components;
 
-import javax.swing.JFormattedTextField;
+import javax.swing.*;
 
 public class Validacao_old {
 

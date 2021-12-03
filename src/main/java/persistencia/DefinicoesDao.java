@@ -1,13 +1,14 @@
 package persistencia;
 
 import easylibmanager.HibernateUtil;
-import java.math.BigDecimal;
-import java.util.List;
 import negocio.Definicoes;
 import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class DefinicoesDao {
 

@@ -2,19 +2,15 @@ package apresentacao;
 
 import components.Validacao;
 import components.Validacao_old;
-import java.util.ArrayList;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import negocio.Usuario;
 import org.hibernate.HibernateException;
 import persistencia.Md5;
 import persistencia.UsuarioDao;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
 
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
@@ -75,16 +71,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldSobrenome = new javax.swing.JTextField();
+        jTextFieldNome = new JTextField();
+        jTextFieldSobrenome = new JTextField();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jTextFieldLogin = new javax.swing.JTextField();
-        jCheckBoxAdmin = new javax.swing.JCheckBox();
+        jTextFieldLogin = new JTextField();
+        jCheckBoxAdmin = new JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
-        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
+        jPasswordFieldSenha = new JPasswordField();
+        jFormattedTextFieldCpf = new JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
 
@@ -547,8 +543,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JCheckBox jCheckBoxAdmin;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
+    private JCheckBox jCheckBoxAdmin;
+    private JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -560,11 +556,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
+    private JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableUsuarios;
-    private javax.swing.JTextField jTextFieldLogin;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSobrenome;
+    private JTextField jTextFieldLogin;
+    private JTextField jTextFieldNome;
+    private JTextField jTextFieldSobrenome;
     // End of variables declaration//GEN-END:variables
 }

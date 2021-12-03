@@ -1,14 +1,15 @@
 package persistencia;
 
 import easylibmanager.HibernateUtil;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import negocio.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class LogDao {
 
@@ -46,6 +47,12 @@ public class LogDao {
 
     public ArrayList<Log> readLogsPeriodo(ArrayList<Log> logs, Date dataInicial, Date dataFinal) {
         ArrayList<Log> logsPeriodo = new ArrayList<>();
+        dataInicial.setHours(0);
+        dataInicial.setMinutes(0);
+        dataInicial.setSeconds(0);
+        dataFinal.setHours(23);
+        dataFinal.setMinutes(59);
+        dataFinal.setSeconds(59);
         for (Log log : logs) {
             Date dataLog = Date.from(log.getDataHora().atZone(ZoneId.systemDefault()).toInstant());
             if (dataLog.compareTo(dataInicial) >= 0 && dataLog.compareTo(dataFinal) <= 0) {
@@ -55,4 +62,13 @@ public class LogDao {
         return logsPeriodo;
     }
 
+    public ArrayList<Log> readLogsTipo(ArrayList<Log> logs, String tipo) {
+        ArrayList<Log> logsTipo = new ArrayList<>();
+        for (Log log : logs) {
+            if (log.getTipo().equals(tipo)) {
+                logsTipo.add(log);
+            }
+        }
+        return logsTipo;
+    }
 }

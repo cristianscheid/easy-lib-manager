@@ -1,15 +1,14 @@
 package apresentacao;
 
+import negocio.Log;
+import persistencia.LogDao;
+
+import javax.swing.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import negocio.Log;
-import persistencia.LogDao;
 
 public class TelaConsultaLogs extends javax.swing.JFrame {
 
@@ -48,7 +47,7 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
 
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableLogs = new javax.swing.JTable();
+        jTableLogs = new JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonFiltrar = new javax.swing.JButton();
@@ -58,6 +57,8 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
         jDateChooserInicial = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jDateChooserFinal = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxTipo = new javax.swing.JComboBox<>();
         jButtonFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -112,6 +113,10 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
 
         jDateChooserFinal.setDateFormatString("dd/MM/yyyy");
 
+        jLabel4.setText("Tipo:");
+
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "TRACE", "ERROR" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,30 +131,40 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonImprimir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3)
-                    .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonFiltrar)
@@ -212,6 +227,12 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
         LogDao dao = new LogDao();
         ArrayList<Log> logs = dao.readAll();
 
+        if (jComboBoxTipo.getSelectedIndex() == 1) {
+            logs = dao.readLogsTipo(logs, "TRACE");
+        }
+        if (jComboBoxTipo.getSelectedIndex() == 2) {
+            logs = dao.readLogsTipo(logs, "ERROR");
+        }
         if (jDateChooserInicial.getDate() != null && jDateChooserFinal.getDate() != null) {
             logs = dao.readLogsPeriodo(logs, jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
         }
@@ -228,13 +249,14 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
 
     private void jButtonLimparFiltrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonLimparFiltrosActionPerformed
     {//GEN-HEADEREND:event_jButtonLimparFiltrosActionPerformed
+        jComboBoxTipo.setSelectedIndex(0);
         jDateChooserInicial.setCalendar(null);
         jDateChooserFinal.setCalendar(null);
         jButtonFiltrarActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-        MessageFormat header = new MessageFormat("Lista de Livros");
+        MessageFormat header = new MessageFormat("Lista de Logs");
         MessageFormat footer = new MessageFormat("EasyLib Manager - Página {0,number, integer}");
         try {
             Boolean complete = jTableLogs.print(JTable.PrintMode.FIT_WIDTH, header, footer);
@@ -296,14 +318,16 @@ public class TelaConsultaLogs extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonImprimir;
     private javax.swing.JButton jButtonLimparFiltros;
+    private javax.swing.JComboBox<String> jComboBoxTipo;
     private com.toedter.calendar.JDateChooser jDateChooserFinal;
     private com.toedter.calendar.JDateChooser jDateChooserInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableLogs;
+    private JTable jTableLogs;
     // End of variables declaration//GEN-END:variables
 }

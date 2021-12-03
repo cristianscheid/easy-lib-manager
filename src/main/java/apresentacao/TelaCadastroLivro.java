@@ -2,23 +2,16 @@ package apresentacao;
 
 import components.JMyNumberField;
 import components.Validacao;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import negocio.Autor;
 import negocio.Categoria;
 import negocio.Editora;
 import negocio.Livro;
-import persistencia.AutorDao;
-import persistencia.CategoriaDao;
-import persistencia.EditoraDao;
-import persistencia.EmprestimoDao;
-import persistencia.LivroDao;
+import persistencia.*;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
 
 public class TelaCadastroLivro extends javax.swing.JFrame {
 
@@ -97,7 +90,7 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField1 = new JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLivros = new javax.swing.JTable();
         Fechar = new javax.swing.JButton();
@@ -109,22 +102,22 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextFieldAno = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldAno = new JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxCategoria = new javax.swing.JComboBox<>();
+        jComboBoxCategoria = new JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButtonExcluir = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
-        jTextFieldTitulo = new javax.swing.JTextField();
-        jTextFieldEditora = new javax.swing.JTextField();
-        jTextFieldAutor = new javax.swing.JTextField();
-        jMyNumberFieldIsbn = new components.JMyNumberField();
+        jTextFieldTitulo = new JTextField();
+        jTextFieldEditora = new JTextField();
+        jTextFieldAutor = new JTextField();
+        jMyNumberFieldIsbn = new JMyNumberField();
         jCheckBoxMostrarLivrosExcluidos = new javax.swing.JCheckBox();
         jButtonTornarDisponivel = new javax.swing.JButton();
 
@@ -585,9 +578,9 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTornarDisponivel;
     private javax.swing.JCheckBox jCheckBoxMostrarLivrosExcluidos;
-    private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextFieldAno;
+    private JComboBox<Categoria> jComboBoxCategoria;
+    private JFormattedTextField jFormattedTextField1;
+    private JFormattedTextField jFormattedTextFieldAno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -602,12 +595,12 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private components.JMyNumberField jMyNumberFieldIsbn;
+    private JMyNumberField jMyNumberFieldIsbn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLivros;
-    private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldEditora;
-    private javax.swing.JTextField jTextFieldTitulo;
+    private JTextField jTextFieldAutor;
+    private JTextField jTextFieldEditora;
+    private JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables
 }

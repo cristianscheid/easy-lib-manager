@@ -2,16 +2,14 @@ package apresentacao;
 
 import components.Validacao;
 import components.Validacao_old;
-import java.util.ArrayList;
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import negocio.Cliente;
 import persistencia.ClienteDao;
 import persistencia.EmprestimoDao;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
 
 public class TelaCadastroCliente extends javax.swing.JFrame {
 
@@ -84,9 +82,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jFormattedTextFieldCelular = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
-        jTextFieldEmail = new javax.swing.JTextField();
+        jFormattedTextFieldCelular = new JFormattedTextField();
+        jFormattedTextFieldTelefone = new JFormattedTextField();
+        jTextFieldEmail = new JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -96,12 +94,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldSobrenome = new javax.swing.JTextField();
+        jTextFieldNome = new JTextField();
+        jTextFieldSobrenome = new JTextField();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCpf = new JFormattedTextField();
         jCheckBoxMostrarClientesExcluidos = new javax.swing.JCheckBox();
         jButtonTornarDisponivel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -529,9 +527,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTornarDisponivel;
     private javax.swing.JCheckBox jCheckBoxMostrarClientesExcluidos;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCelular;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
+    private JFormattedTextField jFormattedTextFieldCelular;
+    private JFormattedTextField jFormattedTextFieldCpf;
+    private JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -545,8 +543,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
-    private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSobrenome;
+    private JTextField jTextFieldEmail;
+    private JTextField jTextFieldNome;
+    private JTextField jTextFieldSobrenome;
     // End of variables declaration//GEN-END:variables
 }

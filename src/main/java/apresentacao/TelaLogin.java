@@ -1,12 +1,11 @@
 package apresentacao;
 
 import easylibmanager.Main;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import negocio.Usuario;
 import persistencia.Md5;
 import persistencia.UsuarioDao;
+
+import javax.swing.*;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -27,8 +26,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldLogin = new javax.swing.JTextField();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
+        jTextFieldLogin = new JTextField();
+        jPasswordFieldSenha = new JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jButtonEntrar = new javax.swing.JButton();
         jButtonEntrarVisitante = new javax.swing.JButton();
@@ -229,8 +228,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
-    private javax.swing.JTextField jTextFieldLogin;
+    private JPasswordField jPasswordFieldSenha;
+    private JTextField jTextFieldLogin;
     // End of variables declaration//GEN-END:variables
 
 }

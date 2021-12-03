@@ -1,16 +1,15 @@
 package apresentacao;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import negocio.Autor;
 import negocio.Categoria;
 import negocio.Editora;
 import negocio.Livro;
 import persistencia.CategoriaDao;
 import persistencia.LivroDao;
+
+import javax.swing.*;
+import java.text.MessageFormat;
+import java.util.ArrayList;
 
 public class TelaConsultaLivro extends javax.swing.JFrame {
 
@@ -60,7 +59,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
 
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableLivros = new javax.swing.JTable();
+        jTableLivros = new JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -451,7 +450,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame {
     private components.JMyNumberField jMyNumberFieldIsbn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableLivros;
+    private JTable jTableLivros;
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldEditora;
     private javax.swing.JTextField jTextFieldTitulo;

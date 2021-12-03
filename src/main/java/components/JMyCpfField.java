@@ -1,7 +1,7 @@
 package components;
 
-import java.awt.Color;
-import javax.swing.JFormattedTextField;
+import javax.swing.*;
+import java.awt.*;
 
 public class JMyCpfField extends JFormattedTextField {
 

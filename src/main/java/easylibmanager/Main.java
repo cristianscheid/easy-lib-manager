@@ -1,16 +1,17 @@
 package easylibmanager;
 
 import apresentacao.TelaLogin;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
 import negocio.Usuario;
 import persistencia.AutorDao;
 import persistencia.CategoriaDao;
 import persistencia.DefinicoesDao;
 import persistencia.UsuarioDao;
+
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
 
 public class Main {
 

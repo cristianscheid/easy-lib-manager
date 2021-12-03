@@ -1,10 +1,11 @@
 package apresentacao;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import negocio.Log;
+
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import negocio.Log;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class TableModelLog implements TableModel {
 
@@ -58,8 +59,8 @@ public class TableModelLog implements TableModel {
         Object[] vet
                 = {
                     aux.getId(),
-//                    aux.getUsuario().getNome(),
-                    "qqcoisa",
+                    aux.getUsuario().getNome(),
+                    //                    "qqcoisa",
                     aux.getIp(),
                     aux.getTipo(),
                     aux.getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss")),

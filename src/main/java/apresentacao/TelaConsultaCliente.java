@@ -1,13 +1,12 @@
 package apresentacao;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import negocio.Cliente;
 import persistencia.ClienteDao;
 import persistencia.EmprestimoDao;
+
+import javax.swing.*;
+import java.text.MessageFormat;
+import java.util.ArrayList;
 
 public class TelaConsultaCliente extends javax.swing.JFrame {
 
@@ -72,7 +71,7 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
         jComboBoxMultaAberto = new javax.swing.JComboBox<>();
         jButtonImprimir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
+        jTableClientes = new JTable();
         jButtonFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -443,7 +442,7 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
     private components.JMyNumberField jMyNumberFieldCodigo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableClientes;
+    private JTable jTableClientes;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldSobrenome;

@@ -1,23 +1,12 @@
 package persistencia;
 
 import easylibmanager.HibernateUtil;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import negocio.Autor;
-import negocio.Categoria;
-import negocio.Cliente;
-import negocio.Definicoes;
-import negocio.Emprestimo;
-import negocio.Livro;
-import negocio.Log;
+import negocio.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.*;
 
 public class EmprestimoDao {
 
@@ -102,9 +91,13 @@ public class EmprestimoDao {
 
     public ArrayList<Emprestimo> readEmprestimosPeriodo(ArrayList<Emprestimo> emprestimos, Date dataInicial, Date dataFinal) {
         ArrayList<Emprestimo> emprestimosPeriodo = new ArrayList<>();
+        dataInicial.setHours(0);
+        dataInicial.setMinutes(0);
+        dataInicial.setSeconds(0);
+        dataFinal.setHours(23);
+        dataFinal.setMinutes(59);
+        dataFinal.setSeconds(59);
         for (Emprestimo emprestimo : emprestimos) {
-//            if (emprestimo.getDataEmprestimo().after(dataInicial) || emprestimo.getDataEmprestimo().before(dataFinal)
-//                    || emprestimo.getDataEmprestimo().equals(dataInicial) || emprestimo.getDataEmprestimo().equals(dataFinal)) {
             if (emprestimo.getDataEmprestimo().compareTo(dataInicial) >= 0 && emprestimo.getDataEmprestimo().compareTo(dataFinal) <= 0) {
                 emprestimosPeriodo.add(emprestimo);
             }

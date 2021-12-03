@@ -1,12 +1,12 @@
 package components;
 
-import javax.swing.JFormattedTextField;
+import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 
 public class JMyCurrencyField extends JFormattedTextField {
 
     public JMyCurrencyField() {
-        setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##0.00"))));
+        setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new NumberFormatter(new java.text.DecimalFormat("###,##0.00"))));
         setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         NumberFormatter nf = (NumberFormatter) this.getFormatter();
         nf.setAllowsInvalid(false);

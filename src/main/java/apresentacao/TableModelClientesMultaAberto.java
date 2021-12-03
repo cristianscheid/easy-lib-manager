@@ -1,9 +1,10 @@
 package apresentacao;
 
-import java.util.ArrayList;
+import negocio.Cliente;
+
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import negocio.Cliente;
+import java.util.ArrayList;
 
 public class TableModelClientesMultaAberto implements TableModel {
 

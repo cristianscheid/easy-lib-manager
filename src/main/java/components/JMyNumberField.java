@@ -1,6 +1,6 @@
 package components;
 
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class JMyNumberField extends JTextField {
 

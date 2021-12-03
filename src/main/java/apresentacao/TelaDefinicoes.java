@@ -1,9 +1,10 @@
 package apresentacao;
 
-import java.math.BigDecimal;
-import javax.swing.JOptionPane;
 import negocio.Definicoes;
 import persistencia.DefinicoesDao;
+
+import javax.swing.*;
+import java.math.BigDecimal;
 
 public class TelaDefinicoes extends javax.swing.JFrame {
 

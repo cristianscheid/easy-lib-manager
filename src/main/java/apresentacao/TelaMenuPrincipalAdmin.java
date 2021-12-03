@@ -1,7 +1,7 @@
 package apresentacao;
 
 public class TelaMenuPrincipalAdmin extends javax.swing.JFrame {
-    
+
     public TelaMenuPrincipalAdmin() {
         initComponents();
         this.setLocationRelativeTo(null);

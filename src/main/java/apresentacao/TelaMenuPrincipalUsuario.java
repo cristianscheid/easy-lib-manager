@@ -1,10 +1,11 @@
 package apresentacao;
 
-import java.util.ArrayList;
 import negocio.Cliente;
 import negocio.Emprestimo;
 import persistencia.ClienteDao;
 import persistencia.EmprestimoDao;
+
+import java.util.ArrayList;
 
 public class TelaMenuPrincipalUsuario extends javax.swing.JFrame {
 

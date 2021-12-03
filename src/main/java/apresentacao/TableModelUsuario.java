@@ -1,9 +1,10 @@
 package apresentacao;
 
-import java.util.ArrayList;
+import negocio.Usuario;
+
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import negocio.Usuario;
+import java.util.ArrayList;
 
 public class TableModelUsuario implements TableModel {
 

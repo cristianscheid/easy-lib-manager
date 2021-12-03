@@ -1,9 +1,10 @@
 package apresentacao;
 
-import java.util.ArrayList;
+import negocio.Livro;
+
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import negocio.Livro;
+import java.util.ArrayList;
 
 public class TableModelLivrosPopulares implements TableModel {
 

@@ -1,12 +1,13 @@
 package persistencia;
 
 import easylibmanager.HibernateUtil;
-import java.util.ArrayList;
-import java.util.List;
 import negocio.Categoria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoriaDao {
 

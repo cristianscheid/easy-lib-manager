@@ -1,16 +1,15 @@
 package apresentacao;
 
 import com.toedter.calendar.JDateChooser;
+import negocio.Emprestimo;
+import persistencia.EmprestimoDao;
+
+import javax.swing.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import negocio.Emprestimo;
-import persistencia.EmprestimoDao;
 
 public class TelaConsultaEmprestimo extends javax.swing.JFrame {
 
@@ -47,12 +46,12 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
 
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableEmprestimos = new javax.swing.JTable();
+        jTableEmprestimos = new JTable();
         jButtonFechar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDateChooserInicial = new com.toedter.calendar.JDateChooser();
-        jDateChooserFinal = new com.toedter.calendar.JDateChooser();
+        jDateChooserInicial = new JDateChooser();
+        jDateChooserFinal = new JDateChooser();
         jComboBoxMultaAberto = new javax.swing.JComboBox<>();
         jComboBoxEmprestimoAtivo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -323,8 +322,8 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLimparFiltros;
     private javax.swing.JComboBox<String> jComboBoxEmprestimoAtivo;
     private javax.swing.JComboBox<String> jComboBoxMultaAberto;
-    private com.toedter.calendar.JDateChooser jDateChooserFinal;
-    private com.toedter.calendar.JDateChooser jDateChooserInicial;
+    private JDateChooser jDateChooserFinal;
+    private JDateChooser jDateChooserInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -333,6 +332,6 @@ public class TelaConsultaEmprestimo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableEmprestimos;
+    private JTable jTableEmprestimos;
     // End of variables declaration//GEN-END:variables
 }
