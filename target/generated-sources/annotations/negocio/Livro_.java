@@ -7,7 +7,7 @@ import negocio.Autor;
 import negocio.Categoria;
 import negocio.Editora;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-12-02T20:39:28")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-12-02T22:32:16")
 @StaticMetamodel(Livro.class)
 public class Livro_ { 
 
