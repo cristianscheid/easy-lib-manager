@@ -60,7 +60,6 @@ public class TableModelLog implements TableModel {
                 = {
                     aux.getId(),
                     aux.getUsuario().getNome(),
-                    //                    "qqcoisa",
                     aux.getIp(),
                     aux.getTipo(),
                     aux.getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss")),
